@@ -1,0 +1,742 @@
+1. 자바의 기본
+package, import 선언은 동일한 파일 내의 모든 클래스에 적용된다.
+
+package 선언보다 먼저 올 수 있는 것은 코멘트 말고 없다.
+
+java.lang 패키지는 import 선언이 필요 없다.
+
+*를 사용해도 *밑의 서브 패키지에 속하는 클래스는 import되지 않는다.
+import test.*
+할 때
+test.MyClass1는 import되지만
+test.sub.MyClass2은 import되지 않는다.
+
+기본 패키지 (무명 패키지)에 속하는 클래스는 무명 패키지에 속하는 클래스에서만 액세스 원래 import를 못 쓰고, 컴파일 에러가
+
+static 필드 나 메소드에 액세스 할 때
+import static jp.co.xxx.Sample.num;
+import static java.lang.System.*;
+를 적으면 수식자를 생략할 수 있다.
+쓸 때 System.out.println말고 out.println처럼 클래스 이름 없이 바로 쓸 수 있다는 말.
+
+static import는 존재하지 않고 import static만 존재한다.
+
+엔트리 포인트의 시그니챠는 다음의 형식
+public static void main (String[] xxx)
+public static void main (String... xxx)
+중 하나를 쓴다.
+
+main 메소드 오버로드도 가능하다.
+
+javac 명령(컴파일)은 확장자 붙여서, java 커멘드(실행)은 확장자 없이
+javac Main.java
+java Main 1 2 3
+Main 뒤의 1 2 3은 엔트리 포인트(main)에 들어갈 시그니챠.
+
+2. Java의 데이터 형 작업
+		1		2	 	4		8(byte)
+정수		byte		short	int		long
+실수						float		double
+문자				char
+부정		boolean
+
+
+정부(양수, 음수)가 존재한다.
+(예 : byte (-128 ~ 127)에 0b11111111 (= 255)는 들어 가지 않는다)
+
+정수는 따로 지정 안 하면 int로 자동 변환.
+실수는 따로 지정 안 하면 double로 자동 변환.
+
+진수	표기
+10 진수	123
+16 진수	0x1A8
+8 진수	0123
+2 진수	0b011
+
+'_'(언더스코어)를 사용한 수치 표기
+예)int num = 123_1234;
+숫자 사이에만 올 수 있다
+숫자 사이면 연속으로 "____" 사용 가능
+숫자의 처음이나 끝 X
+기호 ( "." "L" "F" "0x"...) 앞 뒤 X
+
+
+char 형에 들어가는 것은
+싱글쿼테이션으로 감싼 문자 리터럴
+싱글쿼테이션으로 감싼 "\u"로 시작 Unicode 번호 (문자 리터럴)
+0 ~ 65535까지의 숫자 리터럴
+
+문자열 리터럴은 더블쿼테이션.
+
+식별자(변수나 메소드, 클래스 등의 이름)로 사용할 기호는 "_"및 "$"만 사용 가능.
+식별자의 숫자는 두 번째 문자부터 가능.
+
+null를 표현하는 리터럴은 "null"만 가능 "NULL"불가능.
+
+println(null) 에서는 "null"로 출력된다.
+
+3. 연산자 판정 구조의 사용
+대입 연산자 (= 나 + =)는 피연산자(오페란드)의 평가가 끝난 후에 대입된다.
+int a = 3;
+int b = a += 5; // a = 8, b = 8
+
+"-"는 단항 연산자로도 일한다.
+int a = 10 * - 10; // a = -100
+
+숫자 리터럴의 호환성으로 큰 범위 → 작은 범위의 경우 명시적 캐스트가 필요하다.
+하지만 정수 리터럴에 관해서는 범위 내면 OK
+byte a = 0b10000000; // int →　byte 범위내면 가능하지만 범위 벗어나면 컴파일 에러.
+short b = 128 + 128; // int → short 범위내이므로 OK
+int c = 2 * 3L; // long → int 이기에 컴파일에러.
+float d = 10.0; // double → float 이기에 컴파일에러（10.0f을 쓰면 OK）
+
+Java에서는 boolean와 수치 형으로 호환되지 않습니다
+boolean a = 1; // 컴파일에러
+byte b = true; // 컴파일에러
+
+관계 연산자 :
+
+==
+! =
+>, <,> =, <=(수치 이외에는 사용할 수 없다.)
+instanceOf
+instanceOf는 지정된 형식으로 인스턴스를 어떻게 다룰 지 판정
+
+interface A {}
+class B implements A {}
+....
+B b = new B();
+System.out.println(b instanceOf B); // true
+System.out.println(b instanceOf A); // true
+자식명 instanceOf 부모클래스명 // true
+
+&&와 ||는 쇼트사킷(단락 연산자)라고 불려 왼쪽 피연산자의 결과에 따라 오른쪽 피연산자를 무시하는 경우가 있음.
+
+
+false && x++ == 1; //
+false에 대한 &&(AND)는 뒤에 뭐가 와도 결과는 false이니 오른쪽 오페란도(피연산자) 무시.
+true || x++ == 1; //
+true에 대한 ||(OR)는 뒤에 뭐가 와도 결과는 true이니 오른쪽 피연산자 무시.
+
+연산자의 우선 순위는
+(), "++", "--"가 최우선.
+"*", "/", "%"는 같음.
+
+String 비교
+"==": 동일성(주소까지 같은지 비교)
+"equals ()": 동치성(값이 같은지 비교)
+
+부모클래스에 존재하는 Object.equlas()는 동일성(실제 코드 안을 보면 "=="을 사용했음.)을 가지기에
+반드시 오버라이드(재정의)가 필요하다.
+실제로 String.equals()는 String클래스에서 오버라이드된 메소드.
+
+String a = "test"; // 정수용 메모리 공간에 만들어진 String 인스턴스.
+String b = "test"; // 서로 같은 문자열을 가지고 new로 만든게 아니기에 같은 String 인스턴스를 참조함.
+System.out.println(a == b) // true
+
+String c = new String("test"); // 인스턴스용 메모리 공간에 만들어진 new String 인스턴스.
+System.out.println(a == c) // false
+System.out.println(a.equlas(c)) // true
+
+else if 문은 "else"와 "if"사이에 줄바꿈 넣으면 전혀 다른 의미가 된다.
+if (조건문A) hoge();
+else
+if (조건문B) fuga();
+else bar();
+
+↓
+
+if (조건문A) hoge();
+else {
+    if (조건문B) fuga();
+    else bar();
+}
+
+
+switch문 조건에 들어갈 수 있는 것
+int형 이하의 정수 및 랩퍼(byte, short, int, Byte, Short, Integer)
+문자, 문자열(char, String)
+열거 형(enum)
+
+switch(int){
+case 1:
+}
+
+boolean, long 못 쓴다.
+
+
+switch문의 case 값에 들어가는 것은 상수(고정된 수라는 뜻의 정수) 만 가능하다.
+리터럴
+final선언 된 변수
+만 되고 변수는 못 쓴다.
+
+switch 문의 default를 마지막으로 쓰는 것은 관례이므로 어디에 써도 상관 없다.
+default를 먼저 써도 "어느 case에 해당하지 않는 경우" 라는 것은 변하지 않는다.
+모든 default 케이스는 되지 않는다
+
+4. 배열 만들기 및 사용
+
+//크기 할당 & 초기화 없이 배열 참조변수만 선언
+int[] arr;
+int arr[];
+
+// 선언과 동시에 배열 크기 할당
+int[] arr = new int[5];
+String[] arr = new String[5]; 
+
+// 기존 배열의 참조 변수에 초기화 할당하기
+int[] arr;
+arr = new int[5]; //5의 크기를 가지고 초기값 0으로 채워진 배열 생성
+
+// 선언과 동시에 배열의 크기 지정 및 값 초기화
+int[] arr = {1,2,3,4,5}; 
+int[] arr = new int[]  {1,3,5,2,4};    
+int[] odds = {1,3,5,7,9};  
+String[] weeks = {"월","화","수","목","금","토","일"};
+
+// 2차원 배열 선언
+int[][] arr = new int[4][3];   //3의 크기의 배열을 4개 가질 수 있는 2차원 배열 할당  
+int[][] arr9 = { {2, 5, 3}, {4, 4, 1}, {1, 7, 3}, {3, 4, 5}};
+//arr[0] >> {2, 5, 3};
+//arr[1] >> {4, 4, 1};
+//arr[2] >> {1, 7, 3};
+//arr[3] >> {3, 4, 5};
+
+
+
+배열 형 변수 선언은 요소수 0도 OK
+int[] a = new int[0]; // 요소수0의 배열 오브젝트로 만들 수 있음.
+int[] b = new int[3];
+ArrayList<Integer> c = new ArrayList<>();
+
+System.out.println(a); //
+[I@677327b6
+System.out.println(b); //
+[I@14ae5a5  ※ArrayList와는 다르게 변수명으로 바로 println찍어서 내용물은 안 나옴.
+찍히는 건 일종의 해당 오브젝트의 주소.
+System.out.println(c); // []
+
+배열형 변수 선언의 []는 데이터형, 변수이름 중 어디 뒤에와도 OK
+// 전부 컴파일 가능함.
+int[] a;
+int b[];
+int[][] c[];
+
+배열형 변수 선언시에 요소 수는 지정할 수 없다
+배열형 변수는 배열 인스턴스에 대한 참조이며, 배열 인스턴스 생성과는 다르다.
+int[3] a; // 컴파일에러
+int b[3]; // 컴파일에러
+int c[] = new int[3]; // OK. int[3]의 배열 인스턴스 생성되고, 거기에 참조형 변수 c 설정.
+
+배열 인스턴스의 생성(new)은 요소수를 지정해야 한다.
+변수는 OK
+다차원 배열의 경우, 첫 번째 차원 만 생략 할 수 없다.
+int[] a = new int[3 * 5]; // ok
+int x = 5;
+int[] b = new int[x]; // ok
+int[] c = new int[3.5]; // 컴파일에러
+int[] d = new int[]; // 컴파일에러
+
+int[][][] e = new int[3][4][5]; // ok
+int[][][] f = new int[3][][]; // ok
+int[][][] g = new int[][][5]; // 컴파일에러
+
+배열 인스턴스 생성시 기본 요소는 정해져있다
+숫자 : 0
+boolean : false
+참조형 : null
+
+배열 초기화 연산자 "{}"로 배열의 내용을 초기화 할 수 있다.
+int[] a = {2, 3}; // ok
+int[] b = new int[]{2, 3}; // ok
+int[] c = new int[2]{2, 3};
+// 컴파일에러. 요소수 지정하고, {}로 초기화 까지 해서 에러남.
+int[] d = {}; // 요소 없어도 ok
+int[] e;
+e = {};
+// 컴파일에러　초기화연산자{}는 배열형 변수 선언시에만 사용할 수 있음.
+
+배열형 변수는 부모클래스의 배열형 변수로 암묵적 형식의 형 변환이 가능하다. (업캐스팅)
+Child[] c = new Child[]{new Child(), new Child()}
+Parent[] p = c; // ok
+
+clone () 메소드로 배열의 복사가 가능하다.
+하지만 복제되는 것은 첫 번째 차원까지만 가능하다.
+다차원 배열의 경우, 2차원 이후는 동일한 인스턴스를 참조하고있는 셈이다.
+
+arraycpy () 메소드로도 배열의 복사가 가능하다.
+arraycpy(src, srcStartIndex, dst, dstStartIndex, numOfElements)
+
+
+
+
+-------------------------이하 아래는 아직 미정리--------------------
+5. 루프 구조의 사용
+while 문은 처리 없이도 컴파일 오류가한다
+
+예 :while (true); // 無限ループ
+for 문의 초기화 식으로 여러 개의 변수를 선언 할 수 있지만, 동일한 형태 만
+
+여러 문장 쓸 수는 초기화 갱신 식만
+
+조건식은 반드시 하나
+
+for (int i = 0, j = 10; true; i++, j++) {}// ok
+for (int i = 0, long j = 10; true; i++) {}// コンパイルエラー
+for (int i = 0; true, i < 10; i++) {} // コンパイルエラー
+for 문에서 조건식을 생략해도 ok
+
+break를 사용하지 않는 한 무한 루프
+
+확장 for 문에서 참조 변수를 복사하는 때문에 참조를 바꿔도 원래 배열에는 영향을주지 않는다
+
+Sample[] array = {new Sample(1), new Sample(2), new Sample(3)};
+System.out.println(array[0].getValue()); // 1
+for (Sample s : array){
+    s = new Sample(4);
+    System.out.println(s.getValue()); // 4
+}
+System.out.println(array[0].getValue()); // 1
+
+// s.setValue(4) などとすれば元の配列にも影響が出る
+확장 for 문에서는 앞으로 하나씩 만 처리 할 수
+
+라벨을 사용하면 continue와 break 제어를 옮기는 부분을 자유롭게 지정할 수 (본래는 최근에 한함)
+
+라벨은 모든 부분에 붙여진다
+
+6. 메소드 및 캡슐화 작업
+가변 인자
+
+인수의 형태의 뒤에 마침표 세
+void sample (int... num){ System.out.println(num[0]); }
+가변 길이 인수를 사용할 수있는 마지막 인수 만
+클래스 파일을로드 할 때, static 필드 나 static 메소드는 "static 영역 '에 배치되는
+
+그 이외의 부분의 정의는"heap "에 배치 된 인스턴스 생성 할 때마다 읽는
+
+따라서 static 필드는 인스턴스가없이 도 사용할
+
+static 메소드에서 static가 아닌 메소드 필드에 액세스
+
+오버로드는 서명을 따로 할 필요가있는
+
+서명 = 메소드 명 + 인수의 형식 · 순서
+
+액세스 한정자 · 인수 명 · 반환 형식을 바꿔도 안
+
+생성자의 제한
+
+메소드 이름과 클래스 이름을 정렬
+반환 형식은 설명 할 수없는
+반환 값을 기술하면 그것은 생성자가 아닌 단순한 방법으로 해석된다
+new와 함께 밖에 사용할 수 없다
+액세스 한정자는 뭐든지 좋은 (private도 가능)
+초기화 블록 (클래스 직하의 {}) 생성자보다 먼저 실행된다
+
+기본 생성자는 명시 적으로 생성자를 쓸 때 생성되지 않는
+
+인수가 생성자를 작성하는 경우, 인수 없음의 디폴트 생성자는 생성되지 않기 때문에주의
+
+서브 클래스에서 super 클래스의 생성자는 반드시 자신의 생성자 처음으로 불리는해야
+
+명시하지 않는 경우, 코드의 첫 super ()가 삽입되는
+
+따라서 부모 클래스 super ()가 없으면 컴파일 오류가
+
+다른 생성자를 호출 할 때 this ()를 이용하는
+
+이것은 처음에 호출해야한다
+
+액세스 한정자
+
+수식	설명
+public	모든 OK
+protected	서브 클래스 또는 동일한 패키지의 클래스 만
+없음	동일한 패키지의 클래스 만
+private	클래스 내에서만
+7. 상속 작업
+다음의 2 개는, 서브 클래스에는 이월되지 않는다
+
+생성자
+private 필드 메소드
+인터페이스의 특징
+
+인스턴스화 할 수없는
+메소드는 public에만 생략해도 public
+구현은 가질 수 없다 ({}는 설명 할 수없는)
+필드는 다음에 한하여 가질
+final (= 변경되지 않는 상수)
+static (= 인스턴스화하지 않아도 사용할 수있는)
+구현 (실현)는 implements 다중 실현이 가능
+extends에서 인터페이스를 상속 한 인터페이스를 만들
+구상 클래스는 인터페이스의 추상 메소드를 모두 구현해야한다
+추상 클래스는 그럴 필요는 없다
+추상 클래스의 특징
+
+인스턴스화 할 수없는
+인터페이스와 구체적인 클래스間の子
+즉 추상 메소드와 구상 메소드를 모두 가질 수있어 필드도 정의 할 수
+추상 클래스를 상속 한 구상 클래스는 모든 추상 메소드를 구현해야한다
+추상 클래스의 추상 메소드는 public 일 필요는 없다
+재정 규칙
+
+반환 값은 동일하거나 하위 클래스 (= 공변 반환)
+서명이 동일한
+액세스 한정자는 같거나 더 느슨한 것
+interface 추상 메소드는 public이므로, 구상 클래스도 모두 public으로해야한다
+서브 클래스는 슈퍼 클래스와 서브 클래스의 인스턴스를 모두 가지고 외관상 하나의 인스턴스 생각
+
+따라서 서브 클래스의 생성자는 슈퍼 클래스의 생성자도 먼저 전화하지 않으면 안
+슈퍼 클래스와 서브 클래스에 같은 이름의 필드가 정의되어있는 경우 모두 분리하여 관리하는 것이다
+(그러나 대체 메서드는 인스턴스로 하나 생각)
+동명의 필드를 참조하는 경우 선언 한 변수의 유형에 따라 어떤 것을 사용할지를 결정
+메소드에서 참조하는 경우는, 그 메소드가 선언 된 클래스의 필드를 사용
+class Parent {
+    String val = "P";
+    public String getVal1(){
+        return val;
+    }
+    public String getVal2(){
+        return val;
+    }
+}
+
+class Child extends Parent {
+    String val = "C";
+    public String getVal2(){
+        return val;
+    }
+}
+
+class Main {
+    public static void main (String args[]){
+        Parent p = new Parent();
+        Parent c = new Child();
+        System.out.println(p.val); // P
+        System.out.println(c.val); // Parent として宣言しているので P
+        System.out.println(p.getVal1()); // P
+        System.out.println(c.getVal1()); // Parent で宣言したメソッドなので P
+        System.out.println(p.getVal2()); // P
+        System.out.println(c.getVal2()); // オーバーライドされているので C
+    }
+}
+실현에 대해
+interface A { public void abst(); }
+class B { public void abst(); }
+class C extends B implements A{ } // ok. A の抽象メソッドを実現してるとみなされる
+서브 클래스 만 정의하고있는 메소드 나 필드는 부모 클래스로 취급하는 경우에는 호출되지 않음
+
+캐스트 = "컴파일러에 대한 호환성에 보장"
+
+호환되지 않는 것에 캐스트를 쓰면 컴파일시에 오류가
+(String) 1 // コンパイルエラー
+상속 관계에없는 클래스끼리 캐스팅 컴파일 오류
+상속 관계에있는 클래스끼리의 캐스팅을하는 경우
+업 캐스팅 (서브 클래스에서 슈퍼 클래스에 캐스트)은 암시 적으로 문제가
+extends하여 컴파일러가 스스로 판단 할 수 있기 때문
+다운 캐스팅은 캐스팅 식으로 명시하여야한다
+캐스트 대상의 인스턴스가 어떤 형태인지 보이지 않기 때문에
+만약 캐스트 불가 (슈퍼 클래스의 인스턴스를 서브 클래스로 캐스팅하려고했다)이면
+실행시 오류가
+class Parent {}
+class Child extends Parent{ }
+
+class Main{
+    public static void main(String args[]){
+        Parent c = new Child();
+        Parent p = new Parent();
+
+        Child c_ = (Child) c; // ok
+        Child p_ = (Child) p; // コンパイルは通るが、実行時に ClassCastException
+    }
+}
+로컬 변수 끼리는 동일한 범위 내에서 이름이 쓰고 말라
+필드와 로컬 변수는 쓰고 OK. this를 붙여 구별
+int num = 10;
+if (num < 11){
+    int num = 20; // コンパイルエラー
+    int value = 100; // スコープが違うのでOK
+}
+int value = 200;
+로컬 변수는 프로그래머가 명시 적으로 초기화해야한다
+8. 예외 처리
+try-catch-finally 구문
+
+순서를 바꿀 수 없다
+try
+필수 · 1 만
+catch
+생략 가능 · 여러 기술 가능
+finally
+선택적 · 1 만
+catch, finally 모두 생략 할 수 없다
+catch에서 return하고도 finally 문이 실행 된 후 return이
+
+catch 문에서 finally 문에서 return을하는 경우, finally의 return에 위 쓴다
+
+return 전용 변수가있는 이미지이므로 finally에서 return 한 변수를 다시 쓰는 것이 위 쓰지 않는다
+
+public static int sample1(){
+    try {
+        throw new Exception();
+    } catch (Exception e){
+        return 0;
+    } finally {
+        return 1;
+    }
+}
+
+public static int sample2(){
+    int val;
+
+    try {
+        throw new Exception();
+    } catch (Exception e){
+        val = 0;
+        return val;
+    } finally {
+        val = 1;
+    }
+}
+
+public static void main (String args[]){
+    System.out.println(sample1()); // 1
+    System.out.println(sample2()); // 0
+}
+Throwable
+
+Error
+프로그램에서 복구 할 수없는 문제
+try-catch와 throws 선언도하지 않아도된다
+Exception
+검사 예외 (= RunTimeException 이외의 Exception)
+비 검사 예외 (= RunTimeException )
+try catch와 throws 선언도하지 않아도된다
+Exception이 발생하는 경우
+
+try catch로 처리하는
+throws를 메소드로 선언
+중 하나를해야한다. throws 선언 된 메소드를 사용 측면에서도 위는 적용되는
+main 메솟토에서도 위의 두 가지 중 하나가 필요
+
+Error
+
+OutOfMemoryError
+클래스 정의 및 인스턴스를 유지하는 힙 공간이 부족한 경우
+NoClassFoundError
+실행중인 클래스 파일이없는 경우
+StackOverflowError
+메소드의 실행에 필요한 정보를 배치하는 스택 공간이 부족하면
+무한 재귀 호출 등
+ExceptionInInitializerError
+static 이니셜 라이저 (static 변수의 초기화 등을 할)에서 예외가 발생하면
+예외를 통지하는 상대가 없기 때문에이 오류로 프로그램이 강제 종료
+AssertionError
+주장의 조건식에 합치하지 않는 것이있다
+InternalError
+JVM에서의 일부 오류
+VirtualMachineError
+OutOfMemoryError, StackOverflowError, InternalError의 부모 클래스
+JVM이 깨진 등
+RunTimeException
+
+범위를 벗어난 계
+ArrayIndexOutOfBoundsException
+배열의 범위를 벗어난 액세스
+IndexOutOfBoundsException
+ArrayList에서 범위를 벗어난 액세스
+StringIndexOutOfBoundsException
+string.charAt ()의 범위를 벗어난 액세스
+Illegal 계
+IllegalArgumentException
+인수의 사전 조건이 지켜지지 않은
+IllegalStateException
+준비가 끝나지 등
+기타
+ClassCastException
+NumberFormatException
+NullPointerException
+SecurityException
+
+Java API의 주요한 클래스 작업
+String
+String은 immutable
+
+초기화 한 후 필드를 다시 작성할 수 없다
+
+String는 CharSequence의 서브 클래스
+
+String의 기본 메소드
+
+replaceAll(".", "hoge")
+정규식 대체
+replace("src", "dst")
+간단한 대체 (여러 등장하는 경우도 모든)
+charAt(index)
+indexOf("abc")
+없으면 -1
+subString(start, end)
+subString(start)
+trim()
+공간, \ t (탭 문자) \ n \ r (줄 바꿈)
+문자열의 전후만으로 문자열은 제거하지
+startsWith("a")
+endsWith("a")
+split("\\w\\s")
+정규식 분할
+\ w : 단어 문자
+\ s : 공백
+\ d : 숫자
+대 반대
+concat("a")
+연결하기
+문자열 연결
+
+String a = "30" + 5; // 305
+String b = "30" + 5 + 8; // = "305" + 8 = "3058"
+String c = 5 + 8 + "30"; // = 13 + "30" = "1330"
+
+String d = "hoge" + null; // = "hogenull"
+StringBuilder는 기본적으로 16 자까지 입력 버퍼를 가지는
+생성자에서 버퍼를 지정할 수
+StringBuilder sb = new StringBuilder("abc");
+System.out.println(sb.capacity()); // 3 + 16 = 19
+
+StringBuilder sb2 = new StringBuilder(5);
+System.out.println(sb2.capacity()); // 5
+StringBuilder의 메소드
+
+append (x)
+x는 원시적 형을 모두 넣을 수있는
+10면 "10", true라면 "true"
+insert (index, "hoge")
+delete (start, end)
+deleteCharAt (index)
+reverse ()
+replace (start, end, "hoge")
+subString (start, end)
+String
+subSequence (start, end)
+CharSequence
+toString ()
+내부의 문자열을 반환
+parseXXX
+
+Integer.parseInt("123")
+문자열에서 원시로
+
+Integer.valueOf("123")
+문자열에서 래퍼 클래스에
+이들은 대소 문자를 구별하지 않는다
+
+람다 식
+람다 식
+구현이 필요한 메소드를 하나만 가진 인터페이스를 "함수형 인터페이스 '라고 부른다
+람다 식으로 메소드를 구현할 수
+// 関数型インタフェース
+interface Algorithm1 { 
+    void perform(String name);
+}
+
+interface Algorithm2 {
+    String perform(String name);
+}
+
+---
+
+Algorithm1 a = (String name) -> { System.out.println(name); }
+Algorithm1 b = (name) -> { System.out.println(name); } // 引数の型は省略可能
+Algorithm1 c = name -> System.out.println(name); // 引数は１つなら () 省略可能、メソッドは１つなら {} 省略可能
+
+Algorithm2 d = name -> { return "hello " + name + " !"; }
+Algorithm2 e = name -> "hello " + name + " !"; // 戻り値が必要かつ {} を省略する際は、return 記述不可
+Algorithm2 e = name -> return "hello " + name + " !"; // コンパイルエラー
+
+메소드 내에서 선언 된 로컬 변수와 같은 이름의 변수를 람다 식의 인수 이름으로 사용할 수 없다 (같은 범위)
+
+람다 식 밖에서 선언 된 로컬 변수에 람다 식 내에서 액세스하려면
+
+실질적으로 final 변수 (변경 될 수없는 변수)이어야한다
+
+표준 함수형 인터페이스
+
+Consumer
+void accept (T)
+Supplier
+T get ()
+Predicate
+boolean test (T)
+Functions
+R apply (T)
+DateTime
+LocalDate
+
+mutable 한 Clendar에 immutable
+달이 1 시작
+LocalDate.of(2018, 12, 24)
+LocalDate.parse("2015-01-01")
+기본 형식은yyyy-MM-dd
+존재하지 않는 날짜는 DataTimeException
+LocalDate.of(2017, 1, 32) // DateTimeException
+LocalTime
+
+immutable
+24 시간
+plusHours(10)
+LocalDateTime
+
+LocalDate과 LocalTime을 맞춘
+LocalDateTime.of (2018, 12, 24, 18, 0, 0);
+Duration
+
+시간의 차이를 취급
+Duration d = Duration.between(start, end)
+Period
+
+날짜의 차이를 취급
+Period p = Period.between(start, end)
+Period p = localDate.until(target)
+DateTimeFormatter
+
+ISO_DATE_TIME 가장 표준?
+localDateTime.format( DateTimeFormatter.ISO_DATE_TIME ) // 2018-08-31T00:00:00
+ArrayList
+ArrayList
+
+스레드로부터 안전하지
+Vector는 스레드 안전
+add(element)
+add(index, element)
+set(index, element)
+remove(element)
+equals () 에서 동일한 요소를 검색하고 제거
+첫 번째 하나만 삭제
+뒤에 요소가 반복 오른다
+분명히, 루프에서 읽기를하는 동안 remove를 호출하면,
+루프의 마지막에서 remove 할 때 이외는 ConcurrentModificationException를 throw되는
+그것이 싫어서 경우 iterator를 사용
+removeIf(ラムダ式)
+List와 ArrayList의 제네릭 제약을 부과하며, 없어도 상관 없다 (Object 형의 List가된다)
+
+tips
+도달 불가 코드가 있으면 컴팔 오류
+// サブクラスの Exception が後ろに来る
+try {} catch (Exception e) {} catch (IOException e) { /** cannot reach **/ };
+// coninue の後に処理を書く
+for (int i : list){
+    if ( flg ) {
+        continue;
+        hoge(); // cannot reach
+    }
+}
+// return 後の処理
+void sample(){
+    return;
+    hoge(); // cannot reach
+}
+
+
+참조 사이트
+https://qiita.com/leonis_sk/items/6a147f70ae326494cc03
+https://ifuwanna.tistory.com/231
