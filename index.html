@@ -207,6 +207,12 @@ int[] a = new int[0]; // 요소수0의 배열 오브젝트로 만들 수 있음.
 int[] b = new int[3];
 ArrayList<Integer> c = new ArrayList<>();
 
+무명배열의 경우 절대 []에 요소수 넣으면 안된다.
+Double[] arr3 = new Double[3] {}; // 컴파일 에러 발생
+쓸 거면 
+Double[] arr3 = new Double[] {}; //
+이렇게 []대괄호는 절대 비울 것.
+
 System.out.println(a); //
 [I@677327b6
 System.out.println(b); //
