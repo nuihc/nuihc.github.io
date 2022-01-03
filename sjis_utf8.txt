@@ -1,0 +1,10 @@
+﻿$path = "D:\test"
+  
+$itemList = Get-ChildItem  -File $path -include *.txt　-Recurse
+
+foreach($item in $itemList)
+{
+	$file = [System.IO.File]::ReadAllText($item.FullName,[Text.Encoding]::GetEncoding(932))
+
+	[System.IO.File]::WriteAllText($item.FullName,$file)
+}	
