@@ -286,7 +286,7 @@ type속성의 既定値(기정치, 디폴트값)는 test/css이므로 생략 가
 - 하나의 요소에 대하여 복수의 스타일을 지정할 수 있다. ★
 - 동 페이지의 여러 요소를 한 번에 스타일 지정하는 것이 아니고, 하나에 복수의 스타일 지정
 - 스타일이 중복될 경우에는 설정방법에 따라 우선순위가 결정된다.
-        인라인스타일시트 > 외부스타일시트 또는 내부스타일 시트 > 유저스타일시트 > 유저에이전트스타일시트
+        인라인스타일시트★ > 외부스타일시트 또는 내부스타일 시트 > 유저스타일시트 > 유저에이전트스타일시트
 인라인 스타일 시트 : 한 부분만 적용
   <span style="color : red; text-decoration : underline" }> h1내용 </span>
 외부 스타일 시트
@@ -458,9 +458,257 @@ rgb순이니까 아무튼 초록색★
 img{  transform : skew(20deg); } 
 
 
+.
+transform-origin : right bottom;
+trasnform : ratate(90deg);
+transform-origin을 기점으로 시계 방향으로 90도 돌린다.
+따라서 기존 이미지 cat1에서 오른쪽으로 400px 떨어진 곳에 90도 회전시킨 cat2가 표시된다.★
 
+.테이블의 列幅(れつはば、열폭)을 고정하는 프로퍼티
+- table-layout★
 
+.caption-side 프로퍼티를 사용하여 캡션을 표시할 수 있는 위치로서 알맞은 것
+- 위★
+- 아래★
+캡션은 그 표의 설명, 이미지 설명문 같은 거 붙이는 거
 
+.transition 프로퍼티의 설명
+- CSS 프로퍼티의 변화속도를 제어할 수 있다.★
+움직이는 애니매이션 효과 속도를 조절
+대상이 움직이지 않는 한 아무런 효과 없음
+
+. 이하의 color 프로퍼티에 트랜지션을 적용할 경우에 사용하는 프로퍼티로 바른 것
+a : hover {
+    color : blue;
+}
+- transition : 트랜지션 숏 버젼, transition-property 없이 바로 color, 3s로 사용 가능★
+- transition-property : 트랜지션을 적용할 프로퍼티의 이름을 지정한다.★
+
+. 애니메이션을 정의하는 키워드로서 바른 것
+- @keyframes★
+
+. 74p 틀린 것 하나 찾는
+- 1초 경과 한 후에 애니매이션 개시 (animation-delay : 1s;)
+- 3초간에 걸쳐서 애니매이션이 실행된다. (animation-duration : 3s;)
+- 애니메이션 종료 후, img 요소는 원래의 위치로 돌아가지 않는다.(animation-fill-mode:forwards;)★
+- img 요소는 오른쪽으로 이동하여 투과된다. (margin-left : 0%에서 100%이 되었으므로)
+- 애니메이션이 2회 반복된다. (animation-iteration-count : 2;)
+
+. 76p 바른 것 하나 찾는
+- 3초간에 걸쳐 요소가 역방향(180도 회전)에서 위쪽방향(0도 회전)이 된다. ★
+animation-direction : reverse; 가 있으므로 100% 에서 0%로 간다.
+
+. 애니메이션을 무한 반복시키는 키워드
+- animation-iteration-count : infinite ; ★
+
+. CSS 에러 발생시의 동작으로 바른 것
+- 에러가 발생한 CSS의 설정은 무시되고, CSS의 パース가 계속된다. ★
+
+. html 요소의 폰트 사이즈과 비교하여 폰트 사이즈를 1.2배로 할 경우의 설정
+- font-size : 1.2rem ★
+
+. 폰트를 이타릭 카츠 후토모지로 설정하는 프로퍼티
+- font-weight / font-style ★
+span {
+    font-weight : bold;
+    font-style : italic;
+}
+
+. 폰트의 설명으로 알맞은 것 2개
+- 폰트 패밀리명에 스페이스가 포함된 경우, 쿼테이션으로 감싼다. ★
+- 브라우저마다 기정의 폰트패밀리가 다르다. ★
+- 지정한 폰트패밀리는 유저 환경을 상관하지 않고 사용할 수 있지 않다.
+- 폰트패밀리는 3개 까지만 지정할 수 있는 게 아니고 제한은 없다.
+- 폰트 패밀리를 복수 지정한 경우 반드시 모두 적용되는 것은 아니다. 앞에 지정한 폰트가 있으면 그걸 먼저 사용 후 없으면 뒤로 간다.
+font-family : Arial, "Lucida Grande"
+
+. font 프토퍼티에서 합쳐서 지정할 수 있는 프로퍼티로서 알맞은 것 모두
+- font-style ★ : 스타일 지정
+- font-variant ★ : 스몰캡으로 바꾼다.(소문자와 같은 높이의 대문자)
+- font-family ★ : 폰트 지정
+- line-height ★ : 최소 요소의 높이를 지정할 수 있다.
+- font-height : 폰트의 두꺼움을 지정
+- font-size-adjust XXXXXXXX 소문자의 높이에 맞춰 폰트 사이즈를 변경하는 프로퍼티. 아무튼 폰트 프로퍼티 아님
+
+. 텍스트를 중앙정렬 할 수 있는 프로퍼티
+- text-align : center; ★
+
+. word-spacing 프로퍼티와 letter-spcing프로퍼티의 설명의 조합으로 바른 것
+- word-spacing은 단어간의 스페이스 설정  ★
+  letter-spacing은 문자간의 스페이스 설정  ★
+
+. 텍스트에 우치케시센 붙이는 경우의 값으로 공란
+- text-decoration : double black [  line-through  ] ★
+
+. 텍스트를 왼쪽에서 오른쪽에 표시하는 설정으로 알맞은 조합
+- direction / unicode-bidi ★
+텍스트 요소의 진행 방향을 지정하는 프로퍼티
+ltr(왼에서 오), rtl(오에서 왼)
+
+. 이하의 프로퍼티의 설명으로 알맞은 조합
+- text-shadow : 텍스트에 그림자를 붙인다. ★
+- line-height : 텍스트의 높이를 지정한다. ★
+- vertical-align : 縦(타테)방향의 정렬방법을 지정한다. ★
+
+. 박스모델의 구성하는 요소 (잘못된 것)
+- height ★
+- width ★
+- border : 박스모델(padding과 맞닿은)의 와꾸센 ★
+- margin : padding의 와꾸센 밖의 영역 ★
+margin - padding - content(height, width)
+padding, content를 싸잡아서 border이라고 부름
+
+. 이하의 CSS를 지정한 경우 HTML 요소가 점하는 폭으로서 알맞은 것
+box-sizing : border-box; ★
+로 지정하면 border(와꾸선, 패딩, 컨텐츠)의 크기를 width 크기로 맞춘다.
+box-sizing : content-box;
+는 그냥 하나하나 다 세면 됨
+
+. 블록레벨의 요소인 것 (폭 100% 블록)
+- div, p, form, ol(순서 있는), ul(순서 없는), li,  table, h1, video ★
+인라인 레벨의 요소 (inline)
+- img, span, button
+
+.
+padding : 10px 20px; (상하 / 좌우) ★
+padding : 10px 20px 10px; (상 / 좌우 / 하) ★
+padding : 10px 20px 10px 20px; (상 우 하 좌) ★
+
+. 중앙 정렬
+margin : 0 auto; ★
+
+.
+블럭 요소를 인라인 요소로 바꾸기 위한 float:left ★
+div1, div2 
+중에 div1만 float:left를 주면 div1 20%, div2 80% 식으로 둘만으로 한 블럭이 채워지지만
+div1, div2 둘 다 float:left를 주면 div1 20%, div 20% 그 뒤에 오는 나머지 요소도 전부 블럭의 남은 60% 공간에 다 들어가 버린다.
+부모 요소 :: after로 가상요소를 하나 만들고 거기 clear : boat;를 주는 것으로 해제할 수 있음 ★
+
+ます形+切る
+완전히 다 ~하다.
+
+. div요소 등에 収まりきらない(다 들어가지 않는) 부분의 텍스트를 비표시하기 위한 설정
+- overflow : hidden; ★
+visible : 넘든 말든 영역 넘겨서 다 보여줌
+scroll : 넘는 건 스크롤로 수납하여 보여줌
+
+. 요소의 배경에 동화를 설정하기 위해 사용하는 키워드
+- background : rect(cat.jpg) no-repeat; ★
+고양이 사진 넣고, 반복하지 않는다.
+
+. 배경동화를 전체화면표시로 할 경우
+- background-size : cover; ★
+auto : 이미지 원본값을 그대로 유지.
+contain : 설정한 영역 안에서 이미지 잘리는 거 없이 확대, 축소 해서 보여줌
+cover : 나머지 자르거나 반복해서 꽉 채워서 보여줌
+꽉 채우기 위해서는 100vw, 100vh, background-size : cover
+
+. border 프로퍼티에서 설정 가능한 프로퍼티 모두
+- border-style ★
+- border-width ★
+- border-color ★
+
+. 와꾸선을 둥글게 하는 프로퍼티
+- border-radius ★
+
+. width프로퍼티와 heigh프로퍼티가 100px인 div 요소를 원형으로 만드는 값
+- border-radius : 50% ★
+
+. box-shadow 프로퍼티를 이용하여 내측을 향하여 ぼかす(선염하다? 점점 흐려지게 만드는) 그림자의 설정
+- box-shadow : inset 5px 5px 5px black; ★
+그림자 x축, y축, 보카시 설정, 그림자의 확대, 축소(양수, 음수) 
+inset는 그림자를 내부에 설정
+
+. 왼쪽에서 오른쪽에 걸쳐서 배경에 그라데이션을 거는 설정
+- background-image : linear-gradient(90deg, blue, red); ★
+밑에서 위로 0deg
+왼에서 오른쪽 90deg
+위에서 밑으로 180deg
+
+. columns 프로퍼티의 설명
+- 열방향의 멀티칼럼레이아웃을 실현할 수 있다. ★
+column-count와 column-width(열의 최소 폭)의 숏버전
+div{
+    columns : 2 300px;
+}
+
+. 열 설정된 놈 빼는 프로퍼티
+- column-span : all; ★
+
+. 부모 요소 div에 color, font-size, padding 설정, 자식 요소 p에 계승되는 것은?
+- color, font-size; ★
+기본적으로 부모에 적용된 스타일은 자식에게 계승된다.
+단, padding, margin 프로퍼티 등의 박스모델 관련의 프로퍼티는 계승되지 않는다.
+
+.
+p{
+    color : red [ !important ] ;
+    color : blue;
+}
+전술된 프로퍼티의 우선순위를 높이는 !important ★
+
+. 셀랙터 우선순위
+!important> 인라인스타일시트(HTML안에 바로 style 지정) > id > class, 속성 셀랙터, 의사 클래스 > 타입샐렉터, 의사 요소
+
+. CSS 프로퍼티의 우선순위
+우선순위가 높은 프로퍼티가 많은 게 우선순위가 더 높음
+인라인스타일시트 >> # >> . [] :: : >> 덩그러니
+다 쪼개서 봐라, a > b의 경우 a랑 b만 포함. >는 안 봄. 얘가 덩그러니 2개
+
+.p요소는 무슨 색?
+.latest{
+    color : blue;
+}
+#new{
+    color : yellow;
+}
+p {
+    color : red;
+}
+<div id="news" style="color:green">
+    <p class="latest">HTML555555555</p>
+</div>
+- 블루우ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ ★
+p요소에 직접 프로퍼티 설정하고 있는 것은 latest와 p 2가지.
+2가지 중 우선순위 높은 것은 class 샐렉터.
+
+. HTML5 요소의 설명 적절한 것
+- HTML5에서는 요소가 의미적으로 바르게 사용되고 있는 것이 중요하다. ★
+- 컨텐츠모델이란 각요소가 내포할 수 있는 컨첸트를 정의한 것이다. ★
+- 요소는 7종료의 카테고리로 분류된다. ★
+- 트랜스페어렌트란 부모 요소의 컨텐츠 모델을 우케츠즈쿠 요소를 말한다.
+- Web페이지의 스타일을 바꾸기 위해 요소를 사용하는 것은 바람직 하지 않다.
+
+. HTML5의 섹션에 관한 설명 중 옳은 것 3개
+- 섹션은 body, section, article, aside, nav의 탭으로 명시적으로 정의할 수 있다. ★
+- 섹션 각각이 그 독자의 미다시 층계를 가지는 것이 가능하다. ★
+- 섹션을 이레코로 한 경우, 내측의 세션은 h1요소를 가지는 것이 가능하다. ★
+- 섹션은 표제와 그것에 이어지는 컨텐츠에 의한 구성되고, 문서의 장, 절로 표시한다.
+- 명시적으로 표현도 가능하고, h1~h6로 암묵적으로 구성을 표현하는 것도 가능하다.
+
+.
+- 아웃라인 h1, h2(들여쓰기), blockquote는 보여주지 않음.
+아웃라인이란 문서내의 표제만 빼서 섹션과 그 층계구조를 일목하게 알수 있게 한 것.
+h1~h6가지 있음
+
+. 섹션과 그에 관한 요소의 설명 바른 것
+- header 요소를 문서의 冒頭(ぼうとう서두, 제일 앞에?), footer 요소를 문서의 최후에 배치할 필요는 없다. ★
+- section요소는 의미를 가지는 컨텐츠의 집합을 표한다. ★
+- aside 요소는 광고나 사이드바 등, 메인컨텐츠와 관련성이 얉은 컨텐츠의 섹션을 표한다. ★
+- article 요소에 이레코를 한 경우에 내측의 요소는 외측의 요소와 관련한 기사를 표한다.
+- h1~h6 요소는 해당섹션의 미다시를 표하기 때문에 코미다시, 부제목을 표하기 위해 쓰면 안 된다.
+
+. 서식 방향에 관한 아래의 공란에 적절한 요소명
+[ ★bdi ] 요소에서 다른 서식방향이 사용될 가능성이 있는 곳을 격리하는 것으로
+일본어, 영어, 아랍어 등의 다른 서식방향의 언어가 혼재한 부분을 바르게 표기할 수 있다.
+
+. 루비 소스코드
+- <ruby>熟語<rt>じゅくご</rt></ruby>
+- <ruby>熟語<rp>(</rp><rt>じゅくご</rt><rp>)</rp></ruby>
+rp는 브라우저에서 루비 불가능한 경우 괄호로 보여줌
+rp열고 닫고 열고 닫고
+
+.
 
 
 
