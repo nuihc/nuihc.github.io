@@ -878,18 +878,19 @@ set root = (hd1, 3)
 GRUB2는 디스크 번호 0부터 파티션 번호 1부터 세어짐
 
 
-☆☆☆여기서 부터 검증 안 함☆☆☆
+
 
 
 QUESTION 54
+다음 중 /boot/파일 시스템에 있는 파일은 무엇? (두개 선택)
 Which of the following files are found in the /boot/ file system? (Choose two.)
 A. Linux kernel images
 B. Bash shell binaries
 C. systemd target and service units
-D. Initial ramdisk images
+D. Initial ram disk images
 E. fsck binaries
 
-Correct Answer: AD
+Correct Answer: A, D
 
 Explanation: 
 /boot 디렉토리 내에 E, C 및 B가 어떻게 있는지 볼 수 없음.
@@ -897,9 +898,14 @@ A와 D는 부팅 자체와 관련이 있기 때문에 맞는 것 같습니다.
 B: 부팅과 관련이 없다면 왜 Bash가 여기에 있을까요? 부팅 후 나중에 문제가 될 수 있습니다.
 C: systemd는 이전이 아니라 부팅 후에 또한 systemd target은 /etc/systemd/system안에 있음
 E: fsck binaries 파일은 부팅 후 제공되어야 하며 /boot에 속하지 X.
-Explanation/Reference: 다음 중 /boot/파일 시스템에 있는 파일은 무엇? (두개 선택)
+
+
+
+
+
 
 QUESTION 55
+Debian 패키지 관리자가 소프트웨어 패키지를 다운로드하는 네트워크 위치를 정의하는 파일은 무엇?
 Which file defines the network locations from where the Debian package manager downloads software
 packages?
 A. /etc/dpkg/dpkg.cfg
@@ -907,29 +913,36 @@ B. /etc/apt/apt.conf.d
 C. /etc/apt/apt.conf
 D. /etc/dpkg/dselect.cfg
 E. /etc/apt/sources.list
-
 Correct Answer: E
+- sources.list : 소스 목록 /etc/apt/sources.list 및 /etc/apt/sources.list.d/에 포함된 파일은 여러 곳의 활성화된 소스 저장소(리포지터리)를 지정하는 파일입니다.
 
-Explanation
-Explanation/Reference: Debian 패키지 관리자가 소프트웨어 패키지를 다운로드하는 네트워크 위치를 정의하는 파일은 무엇?
+
+
+
+
+
 
 QUESTION 56
-When removing a package on a system using dpkg package management, which dpkg option ensures
-configuration files are removed as well?
+dpkg 패키지 관리를 사용하여 시스템에서 패키지를 제거할 때 구성 파일도 제거할 수 있는 dpkg 옵션은 무엇?
+When removing a package on a system using dpkg package management, which dpkg option ensures configuration files are removed as well?
 A. --clean
 B. --purge
 C. --vacuum
 D. --remove
-E. –declare
-
+E. --declare
 Correct Answer: B
-
 Explanation:
--r는 패키지를 제거하지만 구성 파일은 유지합니다.
--p --config 파일을 포함한 모든 파일을 제거합니다.
-Explanation/Reference: dpkg 패키지 관리를 사용하여 시스템에서 패키지를 제거할 때 구성 파일도 제거할 수 있는 dpkg 옵션은 무엇?
+- dpkg –P(--purge) pkgname -> 패키지 + 구성파일 삭제 
+- dpkg –r(--remove) pkgname -> 패키지 제거 (구성 파일 유지)
+
+
+
+
+
+
 
 QUESTION 57
+다음 중 Linux 컨테이너를 기존 가상 시스템과 비교할 때 올바른 설명은 무엇입니까? (예: LXC 대 KVM)(3개 선택)
 Which of the following statements are correct when comparing Linux containers with traditional virtual
 machines (e.g. LXC vs. KVM)? (Choose three.)
 A. Containers are a lightweight virtualization method where the kernel controls process isolation and
@@ -942,7 +955,7 @@ D. The guest environment for fully virtualized machines is created by a hypervis
 and emulated hardware devices
 E. Containers on the same host can use different operating systems, as the container hypervisor creates separate kernel execution
 
-Correct Answer: ABD
+Correct Answer: A, B, D
 
 Explanation:
 A. 컨테이너는 커널의 프로세스 분리 및 리소스 관리를 제어하는 경량 가상화 도구입니다.
@@ -950,9 +963,27 @@ B. 완전히 가상화 된 시스템은 가상 시스템 내의 특정 하드웨
 C. 컨테이너가 호스트 시스템의 물리적 하드웨어와 완전히 분리되어 모방된 가상 하드웨어 디바이스만 사용할 수 있습니다.
 D. 완전히 가상화 된 시스템을 위한 게스트 환경은 가상 및 모방된 하드웨어 디바이스를 제공하는 하이퍼바이저에 의해 생성됩니다.
 E. 컨테이너 하이퍼바이저가 별도의 커널 실행을 생성하므로 동일한 호스트에 있는 컨테이너는 서로 다른 운영 체제를 사용할 수 있습니다. 
-Explanation/Reference: 다음 중 Linux 컨테이너를 기존 가상 시스템과 비교할 때 올바른 설명은 무엇입니까? (예: LXC 대 KVM)(3개 선택)
 
-pur
+【가상화란】
+가상화(Virtualization)란, 컴퓨터 리소스를 실제의 물리적 구성에 얽매이지 않고, 논리적으로 분할·통합하여 제공하는 기술입니다. 가상화의 대상이 되는 컴퓨터 리소스에는 서버나 OS, 스토리지, 네트워크 등이 있습니다.
+- 하이퍼바이저형
+   물리 머신상에서 동작하는 하이퍼바이저(가상화를 위한 전용의 OS)상에서 직접 가상 머신을 기동해, 게스트 OS(가상 머신에 인스톨한 OS)를 동작시키는 방식.
+   물리적 머신의 하드웨어를 에뮬레이션(모방)하는 완전 가상화를 실현할 수 있습니다. 
+   게스트 OS는 정상적인 물리적 머신에서 실행되는 것으로 보이므로 이전 서버에 OS를 설치하는 것과 유사한 환경을 구축할 수 있습니다.
+   하이퍼바이저가 지원하는 종류의 게스트 OS라면 Linux, Windows, macOS 등도 사용할 수 있습니다.
+   하이퍼바이저형 가상화 소프트웨어에는 Xen, KVM 등이 있습니다.
+- 컨테이너형
+  OS의 리소스를 「컨테이너」라고 하는 단위로 격리해 공유하는 방식입니다. OS상의 어플리케이션과 같은 레벨의 취급이므로, 오버헤드가 적고,
+  자원·구축·관리의 면에  서 매우 간단하게 됩니다. 컨테이너형 가상화에서는, Linux 커널의 기능에 의해 컨테이너마다의 사용자 관리나 자원 제한을 실시합니다.
+  컨테이너형 소프트웨어에는 LXC, Docker 등이 있습니다.
+
+
+
+
+
+
+QUESTION 58
+종속성이 만족스럽지 않아 로컬 Debian 패키지를 설치하지 못했습니다. 다음 중 누락된 종속성을 설치하고 중단된 패키지 설치를 완료하는 명령은 무엇?
 The installation of a local Debian package failed due to unsatisfied dependencies. 
 Which of the following commands installs missing dependencies and completes the interrupted package
 installation?
@@ -961,44 +992,58 @@ B. apt-get autoinstall
 C. dpkg-reconfigure --all
 D. apt-get all
 E. apt-get install -f
-
 Correct Answer: E
+- apt-get : 명령은 인터넷이나 미디어의 패키지 정보 데이터베이스를 사용하여 종속성을 조정하면서 패키지를 설치 및 설치 제거 할 수 있는 명령입니다.
+    install 패키지명 : 패키지의 인스톨 혹은 업그레이드
 
-Explanation
-Explanation/Reference: 종속성이 만족스럽지 않아 로컬 Debian 패키지를 설치하지 못했습니다. 다음 중 누락된 종속성을 설치하고 중단된 패키지 설치를 완료하는 명령은 무엇?
+
+
+
+
 
 QUESTION 59
+다음 중 GRUB 2 구성 파일에서 유효한 명령은 무엇입니까? (두개 선택)
 Which of the following commands are valid in the GRUB 2 configuration file? (Choose two.)
 A. menuentry
 B. uefi
 C. pxe-ifconfig
 D. insmod
 E. kpartx
+Correct Answer: A, D
+GRUB 2 구성파일 /boot/grub/grub.cfg or /boot/grub2/grub.cfg
+GRUB 설정 파일 「/boot/grub/menu.lst」, 배포에 따라서는 「/boot/grub/grub.conf」
+이 파일 안에서
+둘 다 부트메뉴 관련 같다?
 
-Correct Answer: AD
 
-Explanation
-Explanation/Reference: 다음 중 GRUB 2 구성 파일에서 유효한 명령은 무엇입니까? (두개 선택)
+
+
+
 
 QUESTION 60
+Explanation/Reference: ldd 명령의 목적은 무엇?
 What is the purpose of the ldd command?
 A. It lists which shared libraries a binary needs to run.
 B. It installs and updates installed shared libraries
 C. It turns a dynamically linked binary into a static binary
 D. It defines which version of a library should be used by default
 E. It runs a binary with an alternate library search path
-
 Correct Answer: A
-
-Explanation
-LDD는 리눅스 명령어 유틸리티로 사용자가 실행 파일의 공유 라이브러리 종속성 또는 공유 라이브러리의 종속성을 알고자 하는 경우에 사용됩니다.
-
 A. 이진 파일을 실행해야 하는 공유 라이브러리를 나열합니다.
 B. 설치된 공유 라이브러리를 설치하고 업데이트합니다.
 C. 동적으로 연결된 이진수를 정적 이진수로 변환합니다.
 D. 기본적으로 사용할 라이브러리 버전을 정의합니다.
 E. 대체 라이브러리 검색 경로를 사용하여 이진 파일을 실행합니다.
-Explanation/Reference: ldd 명령의 목적은 무엇?
+- LDD는 리눅스 명령어 유틸리티로 사용자가 실행 파일의 공유 라이브러리 종속성 또는 공유 라이브러리의 종속성을 알고자 하는 경우에 사용됩니다.
+- 리눅스 명령어 ldd는 지정한 프로그램의 라이브러리 의존성을 확인할 때 사용하는 명령어다.
+
+
+
+
+
+
+☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+
 
 QUESTION 61
 What can the Logical Volume Manager (LVM) be used for? (Choose three.)
@@ -1858,158 +1903,197 @@ Explanation/Reference: System V init 구성에 다음 두 개의 심볼 링크�
  
 LPIC 101-500 주관식
 QUESTION 1
+로컬 시스템의 호스트 이름을 설정하는 데 사용되는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
 1. Which command is used to set the hostname of the local system? (Specify only the command without
 any path or parameters.) 
-
 Correct Answer: hostname
 
-Explanation
-Explanation/Reference: 로컬 시스템의 호스트 이름을 설정하는 데 사용되는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
+
+
+
+
 
 QUESTION 2
+옵션에 따라 열려 있는 TCP 연결, 라우팅 테이블 및 네트워크 인터페이스 통계를 표시할 수 있는 명령은 무엇입니까? (경로/매개 변수 없이 명령 지정)
 4. What command, depending on its options, can display the open TCP connections, the routing tables, as
 well as network interface statistics? (Specify only the command without any path or parameters.) 
-
 Correct Answer: netstat
 
-Explanation
-Explanation/Reference: 옵션에 따라 열려 있는 TCP 연결, 라우팅 테이블 및 네트워크 인터페이스 통계를 표시할 수 있는 명령은 무엇입니까? (경로/매개 변수 없이 명령 지정)
+
+
+
+
 
 QUESTION 3
+Network Manager에 포함된 명령 중 명령줄에서 Network Manager에 쉽게 액세스할 수 있는 curses 응용 프로그램은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
 19. Which command included in NetworkManager is a curses application which provides easy acces to the
 NetworkManager on the command line? (Specify only the command without any path or parameters.) 
-
 Correct Answer: nmtui
+nmtui : 콘솔에서 사용가능한 curses 기반  N/W 설정 프로그램
 
-Explanation
-Explanation/Reference: Network Manager에 포함된 명령 중 명령줄에서 Network Manager에 쉽게 액세스할 수 있는 curses 응용 프로그램은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
+
+
+
+
 
 QUESTION 4
+cron 스케줄링 시스템을 사용할 수 있는 모든 사용자가 포함해야 하는 파일(있는 경우)은 무엇? (경로 포함하여 파일의 전체 이름을 지정)
 19. Which file, if present, must contain all users that are allowed to use the cron scheduling system?
 (Specify the full name of the file, including path.) 
-
 Correct Answer: /etc/cron.allow
+- cron 특정 시간 작업 자동 실행 등 스케줄링 역할
+  설정 파일은 cron table을 줄여서 crontab이라 부른다.
+  /etc/cron.allow파일에 유저명을 넣으면 해당 사용자는 해당 크론 사용 가능
 
-Explanation
-Explanation/Reference: cron 스케줄링 시스템을 사용할 수 있는 모든 사용자를 포함해야 하는 파일(있는 경우)은 무엇? (경로 포함하여 파일의 전체 이름을 지정)
+
+
+
+
 
 QUESTION 5
+systemd에 포함된 명령 중 시간 또는 단위 이름과 같은 기준으로 systemd 저널에서 메시지를 선택할 수 있는 명령은 무엇? (경로/매개 변수 없이 명령만 지정.)
 27. Which command included in systemd supports selecting messages from the systemd journal by criteria
 such as time or unit name? (Specify only the command without any path or parameters.) 
-
 Correct Answer: journalctl
+- systemd : 일부 리눅스 배포판에서 유닉스 시스템 V나 BSD init 시스템 대신 사용자 공간을 부트스트래핑하고 최종적으로 모든 프로세스들을 관리하는 init 시스템
+journalctl 이란?
+- systemd의 서비스 로그를 확인할 수 있다.
+- systemd-journald.service에 의해서 systemd의 정보들을 분석한다.
 
-Explanation
-Explanation/Reference: systemd에 포함된 명령 중 시간 또는 단위 이름과 같은 기준으로 systemd 저널에서 메시지를 선택할 수 있는 명령은 무엇? (경로/매개 변수 없이 명령만 지정.)
+
 
 QUESTION 6
+이 변경 내용을 적용하려면 구성에 새 전자 메일 별칭을 추가한 후 실행해야 하는 명령은 무엇? (경로 없이 필요한 모든 매개 변수를 포함해 명령 지정)
 29.Which command must be run after adding a new email alias to the configuration in order to make this
 change effective? (Specify the command without any path but including all required parameters.) 
-
 Correct Answer: newaliases
+/usr/bin/newaliases
+샌드 메일 서버의 aliases 파일 데이터베이스를 업데이트한다.
 
-Explanation
-Explanation/Reference: 이 변경 내용을 적용하려면 구성에 새 전자 메일 별칭을 추가한 후 실행해야 하는 명령은 무엇? (경로 없이 필요한 모든 매개 변수를 포함해 명령 지정)
+
+
+
 
 QUESTION 7
+모든 sendmail 호환 MTA와 함께 사용할 수 있는 MTA의 메일 대기열 내용을 나열하는 데 사용되는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
 33.Which command, available with all sendmail-compatible MTAs, is used to list the contents of the MTA’s
 mail queue? (Specify only the command without any path or parameters.) 
-
 Correct Answer: mailq
+MTA(Mail Transfer Agent)란?
+MTA는 네트워크의 한 노드에서 다른 노드로 전자 메일을 라우트하고 전송하는 응용 프로그램이다. 작업을 수행하기 위해 SMTP(Simple Mail Transfer Protocol)로 알려진 프로토콜을 사용한다.
 
-Explanation
-Explanation/Reference: 모든 sendmail 호환 MTA와 함께 사용할 수 있는 MTA의 메일 대기열 내용을 나열하는 데 사용되는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
+
+
+
+
 
 QUESTION 8
+CUPS에 대한 구성 파일이 들어 있는 최상위 디렉토리는 무엇입니까? (디렉토리 전체 경로 지정)
 34.What is the top-level directory which contains the configuration files for CUPS? (Specify the full path to
 the directory.) 
-
 Correct Answer: /etc/cups
+- CUPS(Common Unix Printing System) : 컴퓨터를 인쇄 서버로 기능하게 해주는 등 프린팅 시스템
 
-Explanation
-Explanation/Reference: CUPS에 대한 구성 파일이 들어 있는 최상위 디렉토리는 무엇입니까? (디렉토리 전체 경로 지정)
+
+
+
 
 QUESTION 9
+/etc/ntp.conf 파일에서 시간 정보에 대해 쿼리할 외부 NTP 소스를 지정하는 옵션은 무엇? ( 값/매개 변수 없이 옵션만 지정)
 37.Which option in the /etc/ntp.conffile specifies an external NTP source to be queried for time information?
 (Specify only the option without any values or parameters.) 
-
 Correct Answer: server
+- NTP(Network Time Protocol)는 인터넷상의 시간을 동일하게 동기화 시켜주는 통신망의 시간 규약
+- yum install ntp 로 설치 가능
+- 설치하면 /etc/ntp.conf 생성되고, 파일 내에서 동기화할 서버 입력 시 server 172.16.15.192 이런식으로 사용
 
-Explanation
-Explanation/Reference: /etc/ntp.conf 파일에서 시간 정보에 대해 쿼리할 외부 NTP 소스를 지정하는 옵션은 무엇? ( 값/매개 변수 없이 옵션만 지정)
+
+
+
 
 QUESTION 10
+현재 Bash 셸에 정의된 별칭을 나열하는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
 46.What command list the aliases defined in the current Bash shell? (Specify only the command without
 any path or parameters.) 
-
 Correct Answer: alias
 
-Explanation
-Explanation/Reference: 현재 Bash 셸에 정의된 별칭을 나열하는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
+
+
+
+
+
 
 QUESTION 11
+SSH에서 X11 전달을 사용할 때 응용 프로그램이 올바른 X11 서버에 연결할 수 있도록 원격 셸에 자동으로 설정되는 환경 변수는 무엇? (추가 명령/값 없이 환경 변수만 지정)
 54.When using X11 forwarding in SSH, what environment variable is automatically set in the remote shell in
 order to help applications to connect to the correct X11 server? (Specify only the environment variable
 without any additional commands or values.) 
-
 Correct Answer: DISPLAY
+(2) 환경 변수
+우리가 사용하고자 하는 쉘의 환경을 작업 환경에 맞게 혹은 작업의 필요에 맞추어서 설정하는 데 사용되는 값들을 가지고 있다. 다시 말하자면
+이렇게 변환된 변수값으로 사용자가 원하는 방향으로 작업을 이끌어갈 환경을 설정한다는 것이다.
+DISPLAY : 현재 X 윈도 디스플레이 위치
 
-Explanation
-Explanation/Reference: SSH에서 X11 전달을 사용할 때 응용 프로그램이 올바른 X11 서버에 연결할 수 있도록 원격 셸에 자동으로 설정되는 환경 변수는 무엇? (추가 명령/값 없이 환경 변수만 지정)
+
+
+
+
 
 QUESTION 12
+하드웨어 시계를 시스템 시계에 동기화하는 데 사용되는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
 71.Which command is used to sync the hardware clock to the system clock? (Specify only the command
 without any path or parameters.) 
-
 Correct Answer: hwclock
 
-Explanation
-Explanation/Reference: .하드웨어 시계를 시스템 시계에 동기화하는 데 사용되는 명령은 무엇입니까? (경로/매개 변수 없이 명령만 지정)
+
+
+
 
 QUESTION 13
+실행 중인 ssh-에이전트 인스턴스에 OpenSSH 개인 키를 추가하는 데 사용되는 명령은 무엇입니까? (경로 없이 명령 이름만 지정)
 87.What command is used to add OpenSSH private keys to a running ssh-agent instance? (Specify the
 command name only without any path.) 
-
 Correct Answer: ssh-add
+- ssh(Secure Shell) 원격지 호스트 컴퓨터에 접속하기 위해 사용되는 인터넷 프로토콜
 
-Explanation
-Explanation/Reference: 실행 중인 ssh-에이전트 인스턴스에 OpenSSH 개인 키를 추가하는 데 사용되는 명령은 무엇입니까? (경로 없이 명령 이름만 지정)
+
+
 
 QUESTION 14
+xinetd 서비스에 대한 구성 파일이 들어 있는 디렉터리는 무엇? (디렉토리의 전체 경로 지정)
 88.Which directory holds configuration files for xinetd services? (Specify the full path to the directory.) 
-
 Correct Answer: /etc/xinetd.d/
 
-Explanation
-Explanation/Reference: xinetd 서비스에 대한 구성 파일이 들어 있는 디렉터리는 무엇? (디렉토리의 전체 경로 지정)
+
+
+
 
 QUESTION 15
+로그인 시도에 사용되는 개인 키의 위치를 지정하는 SSH 명령 매개 변수는 무엇입니까?
 90. Which parameter of the ssh command specifies the location of the private key used for login attempts?
 (Specify only the option name without any values or parameters.) 
+Correct Answer: ssh -i
 
-Correct Answer: ssh-i
 
-Explanation
-Explanation/Reference:
+
+
+
 
 QUESTION 16
+이전에 비활성화된 네트워크 인터페이스 eth0을 활성화하기 위해 명령어에 누락된 매개변수를 채우려면?
+(명령/경로/추가 옵션 없이 파라미터만 지정)
 94.Which parameter is missing in the command 
 ip link set ____ dev eth0 
 to activate the previously inactive network interface eth0? (Specify the parameter only without any 
 command, path or additional options.) 
-
 Correct Answer: up
 
-Explanation
-Explanation/Reference: 이전에 비활성화된 네트워크 인터페이스 eth0을 활성화하기 위해 명령어에 누락된 매개변수를 채우려면?
-(명령/경로/추가 옵션 없이 파라미터만 지정)
+
+
 
 QUESTION 17
+/etc/network/interfaces 또는 /etc/sysconfig/network-scripts/ifcfg-eth0과 같은 배포별 구성에 따라 네트워크 인터페이스를 사용하도록 설정하는 명령은 무엇입니까? (경로/매개 변수가 없는 명령만 지정)
 102.What command enables a network interface according to distribution-specific configuration, such as /
 etc/network/interfacesor /etc/sysconfig/network-scripts/ifcfg-eth0? (Specify only the command without any
 path or parameters.) 
-
 Correct Answer: ifup
-
-Explanation
-Explanation/Reference: /etc/network/interfaces 또는 /etc/sysconfig/network-scripts/ifcfg-eth0과 같은 배포별 구성에 따라 네트워크 인터페이스를 사용하도록 설정하는 명령은 무엇입니까? (경로/매개 변수가 없는 명령만 지정)
