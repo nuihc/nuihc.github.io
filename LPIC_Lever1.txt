@@ -127,7 +127,7 @@ QUESTION 9
 Which chown command changes the ownership to dave and the group to staff on a file named 
 data.txt? 
 A. chown dave/staff data.txt 
-B. chown –u dave –g staff data.txt 
+B. chown -u dave -g staff data.txt 
 C. chown --user dave --group staff data.txt
 D. chown dave+staff data.txt
 E. chown dave:staff data.txt 
@@ -274,9 +274,9 @@ Explanation/Reference: Debian 패키지는 설치하는 동안 여러 개의 파
 다음 중 /etc/debian_version 파일을 소유하는 패키지를 검색하는 명령은 무엇입니까?
 A Debian package creates several files during its installation. Which of the following commands searches for packages owning the file /etc/debian_version? 
 A. apt-get search /etc/debian_version
-B. apt –r /etc/debian_version
+B. apt -r /etc/debian_version
 C. find /etc/debian_version -dpkg
-D. dpkg –S /etc/debian_version
+D. dpkg -S /etc/debian_version
 E. apt-file /etc/debian_version
 Correct Answer: D
 - dpkg는 데비안 패키지 관리 시스템의 기초가 되는 소프트웨어로서, .deb 패키지의 설치, 삭제, 정보 제공을 위해 사용되는 명령어
@@ -402,25 +402,25 @@ E. /etc/yum.repos.d/에 파일이 포함된 경우 /etc/yum.conf는 무시됩니
 QUESTION 26
 패키지가 다시 설치되는 경우 패키지를 제거하지만 구성 파일은 유지하는 명령은 무엇?
 Which command uninstalls a package but keeps its configuration files in case the package is re-installed? 
-A. dpkg –s pkgname
-B. dpkg –L pkgname
-C. dpkg –P pkgname 
-D. dpkg –v pkgname 
-E. dpkg –r pkgname
+A. dpkg -s pkgname
+B. dpkg -L pkgname
+C. dpkg -P pkgname 
+D. dpkg -v pkgname 
+E. dpkg -r pkgname
 Correct Answer: E
-- dpkg –P pkgname -> 패키지 + 구성파일 삭제
-- dpkg –r pkgname -> 패키지 제거 (구성 파일 유지)
+- dpkg -P pkgname -> 패키지 + 구성파일 삭제
+- dpkg -r pkgname -> 패키지 제거 (구성 파일 유지)
 
 
 
 QUESTION 27
 다음 중 RPM 패키지 파일 foo.rpm의 종속성을 나열하는 명령은 무엇?
 Which of the following commands lists the dependencies of the RPM package file foo.rpm? 
-A. rpm –qpR foo.rpm 
-B. rpm –dep foo
-C. rpm –ld foo.rpm
-D. rpm –R foo.rpm
-E. rpm –pD foo
+A. rpm -qpR foo.rpm 
+B. rpm -dep foo
+C. rpm -ld foo.rpm
+D. rpm -R foo.rpm
+E. rpm -pD foo
 Correct Answer: A
 - RPM 도구는 Red Hat 계열 배포에 사용되는 RPM 형식의 패키지를 관리하는 도구입니다.
 -q Query 
@@ -450,11 +450,11 @@ QUESTION 29
 다음 중 사용자 루트가 소유하는 /tmp/ 디렉토리 및 하위 디렉토리 내의 모든 파일과 디렉토리를 나열하는 명령은 무엇? (두개 선택)
 Which of the following commands list all files and directories within the /tmp/ directory and its 
 subdirectories which are owned by the user root? (Choose two.) 
-A. find /tmp –user root -print
-B. find –path /tmp –uid root
-C. find /tmp –uid root -print
-D. find /tmp –user root 
-E. find –path /tmp –user root -print 
+A. find /tmp -user root -print
+B. find -path /tmp -uid root
+C. find /tmp -uid root -print
+D. find /tmp -user root 
+E. find -path /tmp -user root -print 
 Correct Answer: A, D
 
 
@@ -548,11 +548,11 @@ Correct Answer: B
 QUESTION 35
 다음 명령 중 텍스트 파일 userlist.txt의 모든 CR-LF 줄 바꿈을 Linux 표준 LF 줄 바꿈으로 변경하고 결과를 newlist.txt에 저장하는 명령은 무엇입니까?
 Which of the following commands changes all CR-LF line breaks in the text file userlist.txt to Linux standard LF line breaks and stores the result in newlist.txt? 
-A. tr –d ‘\r’ < userlist.txt > newlist.txt
-B. tr –c ‘\n\r’ ‘’ <newlist.txt> userlist.txt
+A. tr -d ‘\r’ < userlist.txt > newlist.txt
+B. tr -c ‘\n\r’ ‘’ <newlist.txt> userlist.txt
 C. tr ‘\r\n’ ‘’ <userlist.txt> newlist.txt
 D. tr ‘\r’ ‘\n’ userlist.txt newlist.txt
-E. tr –s ‘/^M/^J/’ userlist.txt newlist.txt
+E. tr -s ‘/^M/^J/’ userlist.txt newlist.txt
 Correct Answer: A
 Explanation: CR-LF( = \r\n) 삭제하려면 -> tr -d ‘\r’ [결과물]    <= bash 쉘에서 tr -d는 특정문자 제거
 
@@ -629,11 +629,11 @@ QUESTION 40
 find의 출력을 xargs 명령으로 리디렉션할 때 파일 이름인 경우 어떤 옵션이 찾기 유용합니까?
 When redirecting the output of find to the xargs command, what option to find is useful if the filenames?
 contain spaces? 
-A. –rep-space 
+A. -rep-space 
 B. -printnul 
 C. -nospace 
-D. –ignore-space
-E. –print0 
+D. -ignore-space
+E. -print0 
 Correct Answer: 
 Explanation: 예시)find /tmp -name core -type f -print0 | xargs -0 /bin/rm -f
 - find 커맨드의 -print0는 검색결과를 NULL문자(\0)로 구분하여 표시
@@ -651,7 +651,7 @@ Which of the following commands can be used to determine how long the system has
 A. uptime
 B. up 
 C. time --up
-D. uname –u
+D. uname -u
 E. top
 Correct Answer: A, E
 가동시간이나 부하 평균 등을 표시하는 커맨드
@@ -720,8 +720,8 @@ QUESTION 45
 Explanation/Reference: 다음 중 tar 기록들을 압축한 gzip 파일의 내용을 보여주는 명령어는 무엇?
 Which of the following commands displays the contents of a gzip compressed tar archive?
 A. gzip archive.tgz | tar xvf
-B. tar –fzt archive.tgz
-C. gzip –d archive.tgz | tar tvf 
+B. tar -fzt archive.tgz
+C. gzip -d archive.tgz | tar tvf 
 D. tar cf archive.tgz
 E. tar -ztf archive.tgz
 Correct Answer: E
@@ -737,20 +737,22 @@ Explanation
 
 QUESTION 46
 다음 중 /etc/passwd 파일에서 사용자 이름 목록 (첫 번째 열)과 해당 기본 그룹(네 번째 열)을 인쇄하는 명령은 무엇?
-Which of the following commands prints a list of usernames (first column) and their primary group (fourth
-column) from the /etc/passwd file? 
-A. fmt –f 1,4 /etc/passwd
-B. cut –d : -f 1,4 /etc/passwd 
-C. sort –t : -k 1,4 /etc/passwd
-D. paste –f 1,4 /etc/passwd
-E. split –c 1,4 /etc/passwd
+Which of the following commands prints a list of usernames (first column) and their primary group (fourth column) from the /etc/passwd file? 
+A. fmt -f 1,4 /etc/passwd
+B. cut -d : -f 1,4 /etc/passwd 
+C. sort -t : -k 1,4 /etc/passwd
+D. paste -f 1,4 /etc/passwd
+E. split -c 1,4 /etc/passwd
 
 Correct Answer: B
 cut : 텍스트 파일의 각 행에서 지정한 부분의 문자열을 꺼내 표시
    -d 필드의 구분 기호 지정
    -f 검색할 필드 지정
 
-
+sub
+"/etc/passwd" 파일의 각 행의 두 번째 문자를 검색하고 표시하고 싶습니다. 적합한 명령은
+cut -c 2 /etc/passwd
+   -c : 추출하는 문자위치를 지정
 
 
 
@@ -788,11 +790,11 @@ QUESTION 49
 Explanation/Reference: DD/MM/YYY:hh:mm:ss 형식의 로그 파일 loga.log에서 오전 8시에서 8시 59분까지 모든 로그 항목을 필터링하는 명령은 무엇?
 Given a log file loga.log with timestamps of the format DD/MM/YYYY:hh:mm:ss, which command filters out
 all log entries in the time period between 8:00 am and 8:59 am? 
-A. grep –E ‘:08:[09]+:[09]+’ loga.log
-B. grep –E ‘:08:[00]+’ loga.log 
-C. grep –E loga.log ‘:08:[0-9]+:[0-9]+’ 
+A. grep -E ‘:08:[09]+:[09]+’ loga.log
+B. grep -E ‘:08:[00]+’ loga.log 
+C. grep -E loga.log ‘:08:[0-9]+:[0-9]+’ 
 D. grep loga.log ‘:08:[0-9]:[0-9]’
-E. grep –E ‘:08:[0-9]+:[0-9]+’ loga.log 
+E. grep -E ‘:08:[0-9]+:[0-9]+’ loga.log 
 
 Correct Answer: E
 + : 직전 문자의 1회 이상의 반복
@@ -840,7 +842,7 @@ C. yum groupinstall admintools
 D. yum taskinstall admintools 
 E. yum collection install admintools
 Correct Answer: C
-admintools : 패키지 그룹을 설치하고 싶다.
+groupinstall : 패키지 그룹을 설치하고 싶다.
 
 
 
@@ -932,8 +934,8 @@ D. --remove
 E. --declare
 Correct Answer: B
 Explanation:
-- dpkg –P(--purge) pkgname -> 패키지 + 구성파일 삭제 
-- dpkg –r(--remove) pkgname -> 패키지 제거 (구성 파일 유지)
+- dpkg -P(--purge) pkgname -> 패키지 + 구성파일 삭제 
+- dpkg -r(--remove) pkgname -> 패키지 제거 (구성 파일 유지)
 
 
 
@@ -1042,23 +1044,30 @@ E. 대체 라이브러리 검색 경로를 사용하여 이진 파일을 실행�
 
 
 
-☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
-
 
 QUESTION 61
+LVM(논리 볼륨 관리자)은 무엇을 할 수 있을까?(3개 선택)
 What can the Logical Volume Manager (LVM) be used for? (Choose three.)
 A. To create snapshots
 B. To dynamically change the size of logical volumes
 C. To dynamically create or delete logical volumes
 D. To create RAID 9 arrays
 E. To encrypt logical volumes
+Correct Answer: A, B, C
+A. 스냅샷을 만듭니다.
+B. 논리 볼륨의 크기를 동적으로 변경합니다.
+C. 논리 볼륨을 동적으로 생성하거나 삭제합니다.
+encrypt 암호화
 
-Correct Answer: ABC
+LVM(Logical Volume Manager)은 물리적 저장 장치의 영역(물리 볼륨: PV)을 하나로 묶어 하나의 큰 가상 영역(볼륨 그룹: VG)으로 하고, 거기에서 가상 파티션 영역(논리 볼륨 :LV)를 잘라내는 것으로 기존의 물리적 파티션을 이용한 방법보다 유연하게 저장 공간을 관리할 수 있도록 하는 구조입니다.
+구체적으로는 나중에 각 논리 볼륨 (LVM을 사용하지 않는 경우 파티션에 해당)의 크기를 변경하거나 단일 하드 디스크 (LVM의 경우 물리 볼륨이라고 함)의 용량을 초과하는 크기의 논리 볼륨을 만듭니다. , 나중에 새로운 물리 볼륨을 추가하여 볼륨 그룹 전체의 크기를 늘리거나 불필요한 특정 물리 볼륨만 볼륨 그룹에서 삭제할 수 있습니다.
 
-Explanation
-Explanation/Reference: LVM(논리 볼륨 관리자)은 무엇을 할 수 있을까?(3개 선택)
+
+
+
 
 QUESTION 62
+최대 파티션 수와 크기와 관련하여 GPT 파티션 테이블과 MBR 파티션 테이블의 주요 차이점은 무엇? (두 개 선택)
 What are the main differences between GPT and MBR partition tables regarding maximum number and
 size of partitions? (Choose two.) 
 A. MBR can handle partition sizes up to 4 TB, whereas GPT supports partition sizes up to 128 ZB
@@ -1067,7 +1076,7 @@ C. By default, GPT can manage up to 64 partitions while MBR only supports 16 pri
 D. MBR can handle partition sizes up to 2.2 TB, whereas GPT supports sizes up to 9.4 ZB
 E. Both GPT and MBR support up to four primary partitions, each with up to 4096 TB
 
-Correct Answer: BD
+Correct Answer: B, D
 
 Explanation
 A. MBR은 최대 4TB까지 파티션 크기를 처리할 수 있는 반면 GPT는 최대 128 ZB까지 파티션 크기를 지원합니다.
@@ -1075,9 +1084,20 @@ B. 기본적으로 GPT는 최대 128개의 파티션을 관리할 수 있지만 
 C. 기본적으로 GPT는 최대 64개의 파티션을 관리할 수 있지만 MBR은 16개의 기본 파티션만 지원합니다.
 D.MBR은 최대 2.2TB까지 파티션 크기를 처리할 수 있는 반면 GPT는 최대 9.4 ZB까지 지원합니다.
 E. GPT 및 MBR은 각각 최대 4096TB의 기본 파티션을 최대 4개까지 지원합니다.
-Explanation/Reference: 최대 파티션 수와 크기와 관련하여 GPT 파티션 테이블과 MBR 파티션 테이블의 주요 차이점은 무엇? (두 개 선택)
+
+MBR에서 파티션에는 기본(Primary) 파티션과 확장(Extended) 파티션이 있으며, 기본 파티션은 4개까지만 만들 수 있습니다. 더 많은 수로 분할하려면 기본 파티션 중 하나를 확장 파티션으로 할당하고 파티션을 논리(Logical) 파티션으로 더 분할합니다.
+이러한 파티션에 대한 작업에는 fdisk라는 명령을 사용합니다.
+GPT에서는 기본 파티션을 128개 만들 수 있습니다. 따라서 확장 파티션, 논리 파티션이라는 생각은 없어졌습니다. 또한 MBR에 있던 하드디스크 용량이 2.2TB(2TiB: 테비바이트)까지 밖에 관리할 수 없다는 제약이 없어져, 이론상 9.4ZB(8ZiB: 제비바이트)까지의 용량의 하드 디스크를 관리할 수 있게 되어 있습니다. .
+※ZB(제타바이트)란 1GB(기가바이트) x 1000(테라:T) x 1000(페타:P) x 1000(엑사:E) x 1000(제타:Z) 크기입니다.
+이러한 큰 변경으로 인해 GPT 방식의 하드 디스크에서는 fdisk를 사용할 수 없습니다. GPT에서 파티션을 조작하려면 gdisk라는 명령을 사용합니다.
+
+
+
+
+
 
 QUESTION 63
+백업 소프트웨어는 두 백업 실행 사이에 변경되지 않은 파일 간의 하드 링크를 많이 사용. 이러한 하드 링크로 인해 실현되는 이점은 무엇입니까? (두개 선택)
 A backup software heavily uses hard links between files which have not been changed in between two
 backup runs. Which benefits are realized due to these hard links? (Choose two.) 
 A. The old backups can be moved to slow backup media, such as tapes, while still serving as hard link
@@ -1091,7 +1111,7 @@ storing redundant copies
 E. The backup runs faster because, instead of copying the data of each file, hard links only change file
 system meta data
 
-Correct Answer: DE
+Correct Answer: D, E
 
 Explanation: 
 A.	기존 백업을 테이프와 같은 느린 백업 미디어로 이동하면서 새 백업에서 하드 링크 대상 역할을 수행할 수 있습니다. 
@@ -1100,30 +1120,40 @@ B. 하드 링크가 비동기 작업이기 때문에 복사 작업이 이후 시
 C. 하드 링크된 파일을 만든 후 수정할 수 없으므로 백업 비용이 청구되지 않습니다.
 D. 하드 링크가 중복된 복사본을 저장하는 대신 디스크에 있는 동일한 데이터를 가리키기 때문에 백업에 필요한 공간이 적습니다.
 E. 하드 링크는 각 파일의 데이터를 복사하는 대신 파일 시스템 메타데이터만 변경하기 때문에 백업 실행 속도가 더 빠릅니다.
-Explanation/Reference: 백업 소프트웨어는 두 백업 실행 사이에 변경되지 않은 파일 간의 하드 링크를 많이 사용. 이러한 하드 링크로 인해 실현되는 이점은 무엇입니까? (두개 선택)
+
+
+
+
+
+
 
 QUESTION 64
+/proc/ 파일 시스템에서 현재 마운트 된 모든 장치 목록을 포함하는 파일은 무엇입니까? (경로를 포함하여 파일의 전체 이름을 지정합니다.)
 Which file from the /proc/file system contains a list of all currently mounted devices? (Specify the full name
 of the file, including path.) 
-
 Correct Answer: /proc/mounts
-
 Explanation: /proc/mounts는 /proc/self/mounts에 대한 심볼릭 링크입니다.
-Explanation/Reference: /proc/ 파일 시스템에서 현재 마운트 된 모든 장치 목록을 포함하는 파일은 무엇입니까? (경로를 포함하여 파일의 전체 이름을 지정합니다.)
+
+
+
+
 
 QUESTION 65
+/etc/fstab의 구문학적으로 올바른 줄에 몇 개의 필드가 있습니까?
 How many fields are in a syntactically correct line of /etc/fstab?
 A. 3
 B. 4
 C. 5
 D. 6
 E. 7
-
 Correct Answer: D
 
-Explanation
-Explanation/Reference: /etc/fstab의 구문학적으로 올바른 줄에 있는 필드는 몇 개?
+
+
+
+
 QUESTION 66
+chmod 640 filea.txts 실행 중 일반 사용자는 파일 a.txt의 허락을 업데이트하지 않습니다. chmod가 사용 권한을 수정할 수 없는 이유는 무엇? (두개 선택) 
 Running chmod 640 filea.txt as a regular user doesn’t update filea.txt’s permission. What might be a reason
 why chmod cannot modify the permissions? (Choose two.) 
 A. filea.txt is owned by another user and a regular user cannot change the permissions of another user’s
@@ -1131,21 +1161,22 @@ file.
 B. filea.txt is a symbolic link whose permissions are a fixed value which cannot be charged
 C. filea.txt has the sticky bit set and a regular user cannot remove this permission
 D. filea.txt is a hard link whose permissions are inherited from the target and cannot be set directly
-E. filea.txt has the SetUID bit set which imposes the restriction that only the root user can make changes to
-the file
-
-Correct Answer: AB
-
+E. filea.txt has the SetUID bit set which imposes the restriction that only the root user can make changes to the file
+Correct Answer: A, B
 Explanation: 
 A. filea.txt는 다른 사용자의 소유이며 일반 사용자는 다른 사용자의 파일 권한을 변경할 수 없습니다. 
 B. filea.txt는 사용 권한이 과금할 수 없는 고정 값인 심볼 링크입니다.
 C. filea.txt에 고정 비트가 설정되어 있으므로 일반 사용자는 이 사용 권한을 제거할 수 없습니다.
 D. filea.txt는 대상에서 사용 권한이 상속되어 직접 설정할 수 없는 하드 링크입니다.
 E. filea.txt에는 루트 사용자만 파일을 변경할 수 있는 제한이 적용되는 SetUID 비트 집합이 있습니다.
-Explanation/Reference: chmod 640 filea.txts 실행 중 일반 사용자는 파일 a.txt의 허락을 업데이트하지 않습니다. chmod가 사용 권한을 수정할 수 없는 이유는 무엇? (두개 선택) 
+chmod - 권한 변경 명령어
+
+
+
 
 
 QUESTION 67
+다음 중 새 파일 시스템을 생성할 때 필요에 따라 생성하는 대신 고정 개수의 inode를 미리 할당하는 Linux 파일 시스템은 무엇입니까? (두 개 선택)
 Which of the following Linux filesystems preallocate a fixed number of inodes when creating a new
 filesystem instead of generating them as needed? (Choose two.)
 A. JFS
@@ -1153,13 +1184,15 @@ B. ext3
 C. XFS
 D. ext2
 E. procfs
+Correct Answer: B, D
 
-Correct Answer: BD
 
-Explanation
-Explanation/Reference: 다음 중 새 파일 시스템을 생성할 때 필요에 따라 생성하는 대신 고정 개수의 inode를 미리 할당하는 Linux 파일 시스템은 무엇입니까? (두 개 선택)
+
+
+
 
 QUESTION 68
+다음 중 실행 파일 /bin/foo에 대한 SetUID 권한을 설정하는 명령은 무엇?
 Which of the following commands sets the SetUID permission on the executable /bin/foo?
 A. chmod 4755 /bin/foo
 B. chmod 1755 /bin/foo
@@ -1169,23 +1202,33 @@ E. chmod 2755 /bin/foo
 
 Correct Answer: A
 
-Explanation
-Explanation/Reference: 다음 중 실행 파일 /bin/foo에 대한 SetUID 권한을 설정하는 명령은 무엇?
+
+
+
+
+
 
 QUESTION 69
+다음 중 지정된 파일의 inode 번호를 표시하는 데 사용할 수 있는 명령은 무엇입니까? (두개 선택)
 Which of the following commands can be used to display the inode number of a given file? (Choose two.) 
 A. inode
 B. ln
 C. ls 
 D. cp
 E. stat
+Correct Answer: C, E
 
-Correct Answer: CE
+「file.txt」파일의 inode 번호등의 상세 정보를 표시할 수 있는 커멘드
+- stat file.txt
+- ls -i file.txt
 
-Explanation
-Explanation/Reference: 다음 중 지정된 파일의 inode 번호를 표시하는 데 사용할 수 있는 명령은 무엇입니까? (두개 선택)
+
+
+
+
 
 QUESTION 70
+정전 후 /dev/sda3의 XFS 파일 시스템이 일관되지 않습니다. 기존 파일 시스템 오류를 수정하려면 어떻게 해야 할까? 
 After a power outage, the XFS file system of /dev/sda3 is inconsistent. How can the existing file system errors be fixed? 
 A. By using mount -fto force a mount of the file system
 B. By running xfsckon the file system
@@ -1201,10 +1244,19 @@ B. 파일 시스템에서 xfsck를 실행하여
 C. xfs_repair 옵션이 있는 파일 시스템을 마운트하여
 D. 파일 시스템에서 xfsadmin 복구를 실행하여
 E. 파일 시스템에서 xfs_repair를 실행하여
-Explanation/Reference: 정전 후 /dev/sda3의 XFS 파일 시스템이 일관되지 않습니다. 기존 파일 시스템 오류를 수정하려면 어떻게 해야 할까? 
+
+xfs_repair
+XFS 파일 시스템을 검사하고 복구하는 명령어
+xfs_fsr
+XFS 파일 시스템을 조각 모음하는 명령어
+
+
+
+
 
 
 QUESTION 71
+다음 중 해당 파일을 가리키는 하드 링크가 생성될 때 변경되는 기존 파일의 속성은 무엇입니까?
 Which of the following properties of an existing file changes when a hard link pointing to that file is
 created? 
 A. File size
@@ -1212,13 +1264,16 @@ B. Link count
 C. Modify timestamp
 D. Inode number
 E. Permissions
-
 Correct Answer: B
 
-Explanation
-Explanation/Reference: 다음 중 해당 파일을 가리키는 하드 링크가 생성될 때 변경되는 기존 파일의 속성은 무엇입니까?
+
+
+
+
+
 
 QUESTION 72
+FHS(파일 시스템 계층 표준)에 따라 시스템의 모든 사용자가 사용할 수 있도록 하려면 시스템 관리자가 컴파일한 이진 파일을 어디에 배치해야 합니까? 
 Following the Filesystem Hierarchy Standard (FHS), where should binaries that have been compiled by the
 system administrator be placed in order to be made available to all users on the system? (Specify the full
 path to the directory.) 
@@ -1230,11 +1285,16 @@ FHS에 따르면:
 /bin에는 시스템을 가동하거나 복구하는 데 필요한 실행 파일(단일 사용자 모드)이 포함되어 있고,.
 /usr/bin에는 사용자가 사용할 실행 파일이 포함되어 있다. 일반 사용자를 대상으로 하는 대부분의 비부팅 프로그램은 여기에 배치.
 /sbin/에는 부팅 이진 파일 및 기타 실행 파일이 포함되어 있으며 일반적으로 일반 사용자에게 사용되지 않고,
-/usr/local/bin에는 일반적으로 시스템이 아닌 타사 로컬로 컴파일된 이진 파일이 포함되어 있습니다. 사용자 이진 파일의 기본 위치이며,.
+/usr/local/bin에는 일반적으로 시스템이 아닌 타사 로컬로 컴파일된 이진 파일이 포함되어 있습니다. 사용자 이진 파일의 기본 위치이며,
 /usr/local/sbin에 루트 전용 시스템이 아닌 이진 파일이 포함되어 있습니다.
-Explanation/Reference: FHS(파일 시스템 계층 표준)에 따라 시스템의 모든 사용자가 사용할 수 있도록 하려면 시스템 관리자가 컴파일한 이진 파일을 어디에 배치해야 합니까? 
+
+
+
+
+
 
 QUESTION 73
+다음 중 셸에서 특정 명령을 처리하는 방법을 보여 주는 명령은 무엇?
 Which of the following commands show how the shell handles a specific command?
 A. where
 B. type
@@ -1244,10 +1304,15 @@ E. fileinfo
 
 Correct Answer: B
 
-Explanation
-Explanation/Reference: 다음 중 셸에서 특정 명령을 처리하는 방법을 보여 주는 명령은 무엇?
+
+
+
+
+
+
 
 QUESTION 74
+다음 중 섹션 1의 수동 페이지 명령을 표시하는 명령은 무엇?
 Which of the following commands displays the manual page command from section 1?
 A. man command(1)
 B. man command@1
@@ -1258,9 +1323,16 @@ E. man -s 1 command
 Correct Answer: C
 
 Explanation :E도 정답 가능
-Explanation/Reference: 다음 중 섹션 1의 수동 페이지 명령을 표시하는 명령은 무엇?
+
+
+
+
+
+
+
 
 QUESTION 75
+다음 명령 중 데이터라는 파일을 ls의 출력으로 만들거나 덮어쓰는 명령은 무엇?
 Which of the following commands creates or, in case it already exists, overwrites a file called data with the output of ls? 
 A. ls 3> data
 B. ls >& data
@@ -1270,10 +1342,14 @@ E. ls >>> data
 
 Correct Answer: C
 
-Explanation
-Explanation/Reference: 다음 명령 중 데이터라는 파일을 ls의 출력으로 만들거나 덮어쓰는 명령은 무엇?
+
+
+
+
+
 
 QUESTION 76
+다음 중 실행 중인 Bash 셸 내에서 옵션 및 위치 매개 변수를 변경하는 데 사용되는 명령은 무엇?
 Which of the following commands is used to change options and positional parameters within a 
 running Bash shell?
 A. history
@@ -1281,24 +1357,26 @@ B. setsh
 C. bashconf
 D. set
 E. envsetup
-
 Correct Answer: D
-
 Explanation
 set 명령은 시스템 환경의 값을 정의하고 결정하는 데 사용되는 Bourne 셸(sh), C 셸(csh), Korn 셸(ksh)의 내장 함수.
-옵션 B와 C는 명령이 아니며 옵션 A와 E는 다른 용도로 사용됩니다.
-Explanation/Reference: 다음 중 실행 중인 Bash 셸 내에서 옵션 및 위치 매개 변수를 변경하는 데 사용되는 명령은 무엇?
+
+
+
+
+
+
+
 
 QUESTION 77
+다음 중 루트가 소유한 모든 프로세스의 ID를 표시하는 명령은 무엇? (두개 선택)
 Which of the following commands display the IDs of all processes owned by root? (Choose two.)
 A. pgrep -c root
 B. pgrep -u root
 C. pgrep -f root
 D. pgrep -U 0
 E. pgrep -c 0
-
-Correct Answer: BD
-
+Correct Answer: B, D
 Explanation
 B는 -u와 함께 'root' 사용자를 지정되어 있으므로 정답
 D는 'real user ID'와 uid가 0으로 같으므로(기본값이라고 가정) 정답
@@ -1309,9 +1387,15 @@ pgrep -u 사용자 -l = '사용자'가 사용하는 프로세스 ID와 이름을
 	      -c 개수
 -u 사용자
 -l 프로세스 이름을 원하는 대로 프로세스 ID 나열
-Explanation/Reference: 다음 중 루트가 소유한 모든 프로세스의 ID를 표시하는 명령은 무엇? (두개 선택)
+
+
+
+
+
+
 
 QUESTION 78
+다음 중 vi 편집기에서 열려 있는 문서를 저장하고 편집기를 종료하는 시퀀스는 무엇? (두개 선택)
 Which of the following sequences in the vi editor saves the opened document and exits the editor?
 (Choose two.)
 A. Ctrl XX
@@ -1319,12 +1403,13 @@ B. Ctrl :W
 C. Esc zz
 D. Esc :wq
 E. Esc ZZ
+Correct Answer: D, E
 
-Correct Answer: DE
 
-Explanation
-Explanation/Reference: 다음 중 vi 편집기에서 열려 있는 문서를 저장하고 편집기를 종료하는 시퀀스는 무엇? (두개 선택)
+
+
 QUESTION 79
+-v 옵션이 grep 명령에 미치는 영향은 무엇입니까?
 What is the effect of the -v option for the grep command?
 A. It enables color to highlight matching parts
 B. It shows the command’s version information
@@ -1340,8 +1425,14 @@ B. 명령어 버전 정보를 표시합니다.
 C. 일치하지 않는 선만 출력합니다.
 D. 마지막 일치 라인을 표시하는 출력 순서를 먼저 변경합니다.
 E. a+와 일치하는 모든 줄과 접두사를 출력합니다.
-Explanation/Reference: -v 옵션이 grep 명령에 미치는 영향은 무엇입니까?
+
+
+
+
+
+
 QUESTION 80
+다음 중 키보드에서 Ctrl+Z 키 조합을 누를 때 프로세스로 전송되는 신호는 무엇?
 Which of the following signals is sent to a process when the key combination Ctrl+Z is pressed on the
 keyboard?
 A. SIGTERM
@@ -1349,15 +1440,18 @@ B. SIGCONT
 C. SIGSTOP // SIGTSTP
 D. SIGKILL
 E. SIGINT
-
 Correct Answer: C
-
 Explanation
 ctrl+c는 인터럽트에 의한 종료로서, SIGINT와 동일.
 ctrl+z는 중지로, SIGSTP입니다.
-Explanation/Reference: 다음 중 키보드에서 Ctrl+Z 키 조합을 누를 때 프로세스로 전송되는 신호는 무엇?
+
+
+
+
+
 
 QUESTION 81
+다음 문자열에 정규식 s/[ABC] [abc]/xx/를 적용하면 출력은 어떻게 됩니까? ABCabc -
 What is the output when the regular expression s/[ABC] [abc]/xx/is applied to the following string? ABCabc -
 A. ABxxbc
 B. xxCxxc
@@ -1367,10 +1461,15 @@ E. Axxaxx
 
 Correct Answer: A
 
-Explanation
-Explanation/Reference: 다음 문자열에 정규식 s/[ABC] [abc]/xx/를 적용하면 출력은 어떻게 됩니까? ABCabc –
+
+
+
+
+
+
 
 QUESTION 82
+다음 중 Bash 셸을 사용할 때 현재 작업 디렉토리를 인쇄하는 명령은 무엇? (2개 선택)
 Which of the following commands print the current working directory when using a Bash shell? (Choose two.) 
 A. echo “${PWD}”
 B. echo “${WD}”
@@ -1378,11 +1477,16 @@ C. printwd
 D. pwd
 E. echo “${pwd}”
 
-Correct Answer: AD
+Correct Answer: A, D
 
-Explanation
-Explanation/Reference: 다음 중 Bash 셸을 사용할 때 현재 작업 디렉토리를 인쇄하는 명령은 무엇? (2개 선택)
+
+
+
+
+
+
 QUESTION 83
+다음 중 쉘에 테스트를 출력하는 명령은 무엇?
 Which of the following commands outputs test to the shell? 
 A. cat <!EOT test EOT 
 B. cat <|EOT test EOT 
@@ -1392,23 +1496,31 @@ E. cat <<EOT test EOT
 
 Correct Answer: E
 
-Explanation
-Explanation/Reference: 다음 중 쉘에 테스트를 출력하는 명령은 무엇?
+
+
+
+
+
+
 QUESTION 84
+nice 명령을 사용하여 프로세스를 시작할 때 기본적으로 nice 수준은 얼마입니까?
 What is the default nice level when a process is started using the nice command? 
 A. -10
 B. 0
 C. 10
 D. 15
 E. 20
-
 Correct Answer: B
-
 Explanation: 명령이 없을 때는 0
-Explanation/Reference: nice 명령을 사용하여 프로세스를 시작할 때 기본적으로 nice 수준은 얼마입니까?
+
+
+
+
+
 
 
 QUESTION 85
+사용자가 홈 디렉토리에 하위 디렉토리 \dir를 실수로 만들었습니다. 다음 중 해당 디렉터리를 삭제하는 명령은 무엇?
 A user accidentally created the subdirectory \dir in his home directory. Which of the following commands will remote that directory? 
 A. rmdir ~/\\dir
 B. rmdir “~/\dir”
@@ -1418,23 +1530,29 @@ E. rmdir ‘~/\dir’
 
 Correct Answer: D
 
-Explanation: 
-Explanation/Reference: 사용자가 홈 디렉토리에 하위 디렉토리 \dir를 실수로 만들었습니다. 다음 중 해당 디렉터리를 삭제하는 명령은 무엇?
+
+
+
 
 QUESTION 86
+다음 중 정규식을 사용하여 파일 내용에 대해 검색을 수행할 수 있는 명령은 무엇?
 Which of the following commands can perform searches on file contents using regular expressions? 
 A. find
 B. locate
 C. grep 
 D. reggrep
 E. pgrep
-
 Correct Answer: C
-
 Explanation: egrep 또는 grep-E 확장 정규식
-Explanation/Reference: 다음 중 정규식을 사용하여 파일 내용에 대해 검색을 수행할 수 있는 명령은 무엇?
+
+
+
+
+
+
 
 QUESTION 87
+중첩된 디렉토리 구조에서, 특정 수의 하위 디렉토리를 검색하도록 명령을 제한하는 데 사용되는 find 명령 옵션은 무엇?
 In a nested directory structure, which find command line option would be used to restrict the 
 command to searching down a particular number of subdirectories?
 A. -maxdepth 
@@ -1442,39 +1560,54 @@ B. -dirmax
 C. -maxlevels
 D. -s
 E. -n 
-
 Correct Answer: A
 
-Explanation
-Explanation/Reference: 중첩된 디렉토리 구조에서, 특정 수의 하위 디렉토리를 검색하도록 명령을 제한하는 데 사용되는 find 명령 옵션은 무엇?
+
+
+
+
+
+
+
 QUESTION 88
-Which of the following commands generates a list of user names from /etc/passwdalong with their login
-shell? 
+다음 중 로그인 셸과 함께 /etc/passwd에서 사용자 이름 목록을 생성하는 명령은 무엇입니까?
+Which of the following commands generates a list of user names from /etc/passwdalong with their login shell? 
 A. column -s : 1,7 /etc/passwd
 B. chop -c 1,7 /etc/passwd 
 C. colrm 1,7 /etc/passwd 
-D. sort -t: -k1,7 /etc/passwd 
-E. cut -d: -f1,7 /etc/passwd 
-
+D. sort -t: -k 1,7 /etc/passwd 
+E. cut -d: -f 1,7 /etc/passwd 
 Correct Answer: E
 
-Explanation
-Explanation/Reference: 다음 중 로그인 셸과 함께 /etc/passwd에서 사용자 이름 목록을 생성하는 명령은 무엇입니까?
+    -f 필드 : 추출할 필드를 지정 
+                n -> n번째 필드
+                n, m -> n에서 m번째 필드
+
+
+
+
+
+
 
 QUESTION 89
+gzip으로 압축 한 tar archive texts.tgz에 a.txt 및 b.txt 파일이 들어 있는 경우, gunzip texts.tgz를 실행한 후 현재 디렉토리에 표시될 파일은 무엇?
 If the gzip compressed tar archive texts.tgz contains the files a.txt and b.txt, which files will be present in the current directory after running gunzip texts.tgz? 
 A. Only a.txt, b.txt, and texts.tgz 
 B. Only texts.tar and texts.tgz 
 C. Only a.txt.gz and b.txt.gz
 D. Only a.txt and b.txt 
 E. Only texts.tar
-
 Correct Answer: E
 
-Explanation
-Explanation/Reference: gzip으로 압축 한 tar archive texts.tgz에 a.txt 및 b.txt 파일이 들어 있는 경우, gunzip texts.tgz를 실행한 후 현재 디렉토리에 표시될 파일은 무엇?
+
+
+
+
+
+
 
 QUESTION 90
+vi 편집기에서 커서 이동 또는 버퍼로 줄 복사와 같은 명령을 여러 번 실행하거나 여러 행에 적용하는 방법은 무엇?
 In the vi editor, how can commands such as moving the cursor or copying lines into the buffer be issued multiple times or applied to multiple rows?
 A. By using the command :repeat followed by the number and the command
 B. By specifying the number right in front of a command such as 41 or 2yj
@@ -1490,9 +1623,16 @@ B. 41 또는 2yj와 같은 명령어 바로 앞에 숫자를 지정함
 C. 명령을 적용하기 전에 sit 및 커서 키를 사용하여 영향을 받는 모든 라인을 선택함
 D. :set repeation=4와 같은 명령을 다음 명령마다 4번씩 반복하여 실행합니다.
 E. 14 또는 yj2와 같은 명령 뒤에 이스케이프가 이어지는 숫자를 지정합니다.
-Explanation/Reference: vi 편집기에서 커서 이동 또는 버퍼로 줄 복사와 같은 명령을 여러 번 실행하거나 여러 행에 적용하는 방법은 무엇?
+
+
+
+
+
+
+
 
 QUESTION 91
+다음 중 & 문자로 끝나는 명령에 적합한 문장은 무엇?
 Which of the following statements is correct for a command ending with an & character?
 A. The command’s output is redirected to /dev/null
 B. The command is run in background of the current shell
@@ -1508,9 +1648,15 @@ B. 명령은 현재 셸을 배경으로 실행됩니다.
 C. 명령의 출력은 셸에 의해 실행됩니다.
 D. 명령은 init 프로세스의 직계 하위 항목으로 실행됩니다.
 E. 명령의 입력은 /dev/null에서 읽습니다.
-Explanation/Reference: 다음 중 & 문자로 끝나는 명령에 적합한 문장은 무엇?
+
+
+
+
+
+
 
 QUESTION 92
+다음 명령 중 파일을 읽고 파일의 내용과 지정된 크기의 개별 청크를 만드는 것은 무엇입니까?
 Which of the following commands reads a file and creates separate chunks of a given size from the file’s contents? 
 A. ar
 B. cat
@@ -1519,11 +1665,17 @@ D. split
 E. parted
 
 Correct Answer: D
+split : chunk 사이즈 나눌 때 사용
 
-Explanation
-Explanation/Reference: 다음 명령 중 파일을 읽고 파일의 내용과 지정된 크기의 개별 청크를 만드는 것은 무엇입니까?
+
+
+
+
+
+
 
 QUESTION 93
+xargs 명령의 목적은 무엇?
 What is the purpose of the xargs command?
 A. It passes arguments to an X server
 B. It repeats the execution of a command using different parameters for each invocation
@@ -1539,24 +1691,33 @@ B. 각 호출에 대해 서로 다른 매개 변수를 사용하여 명령 실�
 C. 표준 입력을 읽고 실행할 명령을 구축합니다.
 D. 그래픽으로 질문을 하고 쉘에 답을 반환합니다.
 E. 일반적으로 짧은 옵션(예: -h)만 허용하는 명령에 긴 옵션(예: --help)을 지정할 수 있습니다.
-Explanation/Reference: xargs 명령의 목적은 무엇?
+
+
+
+
+
+
 
 QUESTION 94
+이미 실행 중인 프로세스의 우선 순위를 변경하는 데 사용되는 명령은 무엇? (경로/매개 변수 없이 명령만)
 Which command is used to change the priority of an already running process? (Specify ONLY the
 command without any path or parameters.)
-
 Correct Answer: renice
 
-Explanation
-Explanation/Reference: 이미 실행 중인 프로세스의 우선 순위를 변경하는 데 사용되는 명령은 무엇? (경로/매개 변수 없이 명령만)
+
+
+
+
+
 
 QUESTION 95
-In Bash, inserting 1>&2 after a command redirects… 
-A. …standard error to standard input
-B. …standard output to standard error
-C. …standard input to standard error
-D. …standard error to standard output
-E. …standard output to standard input
+Bash에서 명령이 리디렉션 된 후 1>&2 삽입의 결과는?
+In Bash, inserting 1>&2 after a command redirects
+A. standard error to standard input
+B. standard output to standard error
+C. standard input to standard error
+D. standard error to standard output
+E. standard output to standard input
 
 Correct Answer: B
 
@@ -1566,10 +1727,16 @@ B. "표준 출력을 표준 오차로 변환합니다.
 C. "표준 입력에서 표준 오차를 구합니다.
 D. "표준 오차를 표준 출력으로 출력합니다.
 E. "표준 출력을 표준 입력으로 출력합니다.
-Explanation/Reference: Bash에서 명령이 리디렉션 된 후 1>&2 삽입의 결과는?
+
+
+
+
+
+
 
 
 QUESTION 96
+UEFI 시스템의 하드 디스크에서 부트 로더는 어디에 저장?
 Where is the bootloader stored on the hard disk of a UEFI system?
 A. In the EFI Boot Record (EBR)
 B. In the Master Boot Record (MBR)
@@ -1582,9 +1749,14 @@ Correct Answer: C
 Explanation:
 기존 BIOS로 부팅 모드를 설정한 경우: MBR
 UEFI 부팅 모드: ESP
-Explanation/Reference: UEFI 시스템의 하드 디스크에서 부트 로더는 어디에 저장?
+
+
+
+
+
 
 QUESTION 97
+기본 systemd 부팅 대상을 다중 사용자로 설정하는 올바른 방법은 무엇?
 What is the correct way to set the default systemd boot target to multi-user?
 A. systemctl isolate multi-user.target
 B. systemctl set-runlevel multi-user.target
@@ -1594,18 +1766,21 @@ E. systemctl boot -p multi-user.target
 
 Correct Answer: D
 
-Explanation
-Explanation/Reference: 기본 systemd 부팅 대상을 다중 사용자로 설정하는 올바른 방법은 무엇?
+
+
+
+
+
 
 QUESTION 98
+다음 중 Linux 부팅 프로세스와 관련된 초기 RAM 디스크에 대해 올바른 설명은 무엇?(2개 선택)
 Which of the following statements are correct about the initial RAM disk involved in the boot process of Linux? (Choose two.) 
 A. An initramfs is a compressed file system archive, which can be unpacked to examine its contents.
 B. An initramfs file contains the MBR, the bootloader and the Linux kernel
 C. After a successful boot, the initramfs contents are available in /run/initramfs/
 D. The kernel uses the initramfs temporarily before accessing the real root file system
 E. An initramfs does not depend on a specific kernel version and is not changed after the initial installation
-
-Correct Answer: AD
+Correct Answer: A, D
 
 Explanation:
 A. initramfs는 압축 파일 시스템 아카이브로, 내용을 검사하기 위해 압축을 풀 수 있습니다.
@@ -1613,9 +1788,20 @@ B. initramfs 파일에는 MBR, 부트 로더 및 Linux 커널이 포함되어 �
 C. 부팅에 성공하면 /run/initramfs/에서 initramfs 컨텐츠를 사용할 수 있습니다.
 D. 커널은 실제 루트 파일 시스템에 액세스하기 전에 일시적으로 initramfs를 사용합니다.
 E. initramfs는 특정 커널 버전에 종속되지 않으며 초기 설치 후 변경되지 않습니다.
-Explanation/Reference: 다음 중 Linux 부팅 프로세스와 관련된 초기 RAM 디스크에 대해 올바른 설명은 무엇?(2개 선택)
+
+・커널
+커널은 기동되면, 고도로 하드웨어를 인식・제어해, 루트 파일 시스템의 마운트등 여러가지 초기화 처리를 실시합니다.
+부트 로더는 커널과 초기 RAM 디스크 (initramfs)의 내용을 메모리에 배포하고 커널은 메모리에 배포 된 초기 RAM 디스크의 파일 시스템에 액세스하는 데 필요한 드라이버와 스크립트를 사용하여 루트 파일 시스템을 마운트합니다. 그런 다음 init이라는 특별한 첫 번째 프로세스를 루트 파일 시스템에서 시작합니다.
+커널 이미지와 커널 버전에 해당하는 초기 RAM 디스크는 "/boot" 디렉토리에 저장됩니다. 초기 RAM 디스크는 확장하여 이미지의 디렉토리, 파일을 참조할 수 있습니다.
+
+
+
+
+
+
 
 QUESTION 99
+다음 중 필요한 종속성 모듈과 함께 커널 모듈을 로드하는 명령은 무엇?
 Which of the following commands loads a kernel module along with any required dependency modules?
 A. depmod
 B. modprobe
@@ -1625,10 +1811,14 @@ E. loadmod
 
 Correct Answer: B
 
-Explanation
-Explanation/Reference: 다음 중 필요한 종속성 모듈과 함께 커널 모듈을 로드하는 명령은 무엇?
+
+
+
+
+
 
 QUESTION 100
+lspci 명령이 시스템 하드웨어에 대해 표시할 수 있는 정보는 무엇? (세 개를 선택)
 What information can the lspci command display about the system hardware? (Choose three.)
 A. System battery type
 B. Device IRQ settings
@@ -1636,20 +1826,34 @@ C. PCI bus speed
 D. Ethernet MAC address
 E. Device vendor identification
 
-Correct Answer: BCE
+Correct Answer: B, C, E
 
-Explanation
-Explanation/Reference:  lspci 명령이 시스템 하드웨어에 대해 표시할 수 있는 정보는 무엇? (세 개를 선택)
+lspci
+- PCI 장치 정보를 표시하는 명령
+    lspci 명령으로 얻을 수 있는 정보
+    - I/O 포트 주소
+    - 벤더 이름(벤더 ID)
+    - 버스 속도
+    - IRQ 번호
+
+
+
+
 
 QUESTION 101
-Which System V init configuration file is commonly used to set the default run level? (Specify the full name
-of the file, including path.) 
+Which System V init configuration file is commonly used to set the default run level? (Specify the full name of the file, including path.) 
 
 Correct Answer: /etc/inittab
 
 Explanation
 Explanation/Reference:
+  
+  
+  
+  
+  
 QUESTION 102
+다음 중 현재 설치된 모든 패키지의 최신 버전을 설치하는 apt-get 하위 명령은 무엇?
 Which of the following apt-get subcommands installs the newest versions of all currently installed packages?
 A. auto-update
 B. dist-upgrade
@@ -1665,9 +1869,18 @@ B. dist-upgrade -> 업그레이드 Linux 배포(모든 패키지를 업그레이
 C. 전체 업그레이드 -> 존재하지 않습니다.
 D. 설치 -> 새 패키지 설치
 E. 업그레이드 -> 이전 패키지를 업데이트하고 유지 관리합니다.
-Explanation/Reference: 다음 중 현재 설치된 모든 패키지의 최신 버전을 설치하는 apt-get 하위 명령은 무엇?
+
+
+
+
+
+
 
 QUESTION 103
+다음 입력 스트림이 주어집니다.
+        => txt1.txt at text.txtxtB.txt 
+다음 중 이 입력 스트림을 다음 출력 스트림으로 전환하는 정규식은 무엇?  
+        => txt1.bak.txt at text.bak.txtxtB.bak.txt
 Given the following input stream: 
 txt1.txt atxt.txt txtB.txt 
 Which of the following regular expressions turns this input stream into the following output stream? 
@@ -1680,41 +1893,57 @@ E. s/[.txt]/.bak$1/
 
 Correct Answer: C
 
-Explanation
-Explanation/Reference: 다음 입력 스트림이 주어집니다. => txt1.txt at text.txtxtB.txt 
-다음 중 이 입력 스트림을 다음 출력 스트림으로 전환하는 정규식은 무엇?  
-=> txt1.bak.txt at text.bak.txtxtB.bak.txt
+
+
+
+
+
+
 
 QUESTION 104
+다음 중 부팅 중에 /dev/sda1의 ext3 파일 시스템이 전체 파일 시스템 검사를 실행하기 전에 변경되는 명령은 무엇?
 Which of the following commands changes the number of days before the ext3 filesystem on /dev/sda1
 has to run through a full filesystem check while booting?
-A. tune2fs –d 200 /dev/sda1
-B. tune2fs –i 200 /dev/sda1
-C. tune2fs –c 200 /dev/sda1
-D. tune2fs –n 200 /dev/sda1
-E. tune2fs --days 200 /dev/sda1
+A. tune2fs -d 200 /dev/sda1
+B. tune2fs -i 200 /dev/sda1
+C. tune2fs -c 200 /dev/sda1
+D. tune2fs -n 200 /dev/sda1
+E. tune2fs -days 200 /dev/sda1
 
 Correct Answer: B
 
 Explanation: - i가 구간인 경우
-Explanation/Reference: 다음 중 부팅 중에 /dev/sda1의 ext3 파일 시스템이 전체 파일 시스템 검사를 실행하기 전에 변경되는 명령은 무엇?
+
+
+
+
+
+
+
 
 QUESTION 105
-Which file in the /proc filesystem lists parameters passed from the bootloader to the kernel? (Specify the
-file name only without any path and with path
+/proc 파일 시스템의 어느 파일이 부트 로더에서 커널로 전달되는 매개 변수를 나열합니까?
+(파일 이름만 지정.)
+Which file in the /proc filesystem lists parameters passed from the bootloader to the kernel? (Specify the file name only without any path and with path
 
 Correct Answer: cmdline
 
-Explanation
-Explanation/Reference: /proc 파일 시스템의 어떤 파일에 부트 로더에서 커널로 전달된 매개 변수가 나열? (파일 이름만 지정.)
+
+
+
+
+
+
 
 QUESTION 106
+결함이 있는 커널 모듈로 인해 네트워크 인터페이스 카드에 문제가 발생하고 있습니다. 
+다음 중 시스템이 부팅될 때 이 모듈이 자동으로 로드되지 않도록 하는 작업은 무엇?
 A faulty kernel module is causing issues with a network interface card. 
 Which of the following actions ensures that this module is not loaded automatically when the system
 boots? 
 A. Using lsmod --remove --autocleanwithout specifying the name of a specific module 
-B. Using modinfo –kfollowed by the name of the offending module
-C. Using modprobe –rfollowed by the name of the offending module
+B. Using modinfo -kfollowed by the name of the offending module
+C. Using modprobe -rfollowed by the name of the offending module
 D. Adding a blacklist line including the name of the offending module to the file 
 /etc/modprobe.d/blacklist.conf 
 E. Deleting the kernel module’s directory from the file system and recompiling the kernel, including its
@@ -1724,15 +1953,20 @@ Correct Answer: D
 
 Explanation:
 A. 특정 모듈의 이름을 지정하지 않고 lsmod --remove --autoclean 사용 
-B. modinfo –k 사용, 문제 있는 모듈의 이름 사용
-C. modprobe 사용 –r 뒤에 위반 모듈 이름이 붙습니다.
+B. modinfo -k 사용, 문제 있는 모듈의 이름 사용
+C. modprobe 사용 -r 뒤에 위반 모듈 이름이 붙습니다.
 D. 파일에 위반되는 모듈의 이름이 포함된 블랙리스트 줄을 추가합니다. 
 /etc/modprobe.d/sys.conf 
 E. 파일 시스템에서 커널 모듈의 디렉토리를 삭제하고 해당 모듈을 포함하여 커널을 다시 컴파일합니다.
-Explanation/Reference: 결함이 있는 커널 모듈로 인해 네트워크 인터페이스 카드에 문제가 발생하고 있습니다. 
-다음 중 시스템이 부팅될 때 이 모듈이 자동으로 로드되지 않도록 하는 작업은 무엇?
+
+
+
+
+
+
 
 QUESTION 107
+EFI 시스템 파티션에는 무엇이 포함?
 What is contained on the EFI System Partition?
 A. The Linux root file system
 B. The first stage boot loader
@@ -1741,10 +1975,22 @@ D. The Linux default shell binaries
 E. The user home directories
 
 Correct Answer: B
+부트 로더나 기동에 필요한 드라이버 등이 놓여져 있다
 
-Explanation
-Explanation/Reference: EFI 시스템 파티션에는 무엇이 포함?
+ESP (EFI 시스템 파티션)는 UEFI 시스템에서 물리적 시스템을 부팅하고 펌웨어가로드 된 후 후속 부팅 시퀀스에서 처음 액세스되는 영역입니다.
+ESP는 FAT로 포맷되며 부트 로더와 같은 다른 부팅에 필요한 드라이버와 프로그램도 있습니다.
+UEFI 시스템에서는 부트 로더가 반드시 필요한 것은 아니며 UEFI 부트 관리자에서 직접 커널을 시작할 수도 있습니다.
+
+
+
+
+
+
+
+
+
 QUESTION 108
+dbmaint & 명령은 백그라운드에서 dbmaint를 실행하는 데 사용되었습니다. 그러나 dbmaint는 시스템에서 로그아웃한 후 종료됩니다. 프로그램을 실행 중인 사용자가 로그아웃하더라도 dbmaint를 계속 실행할 수 있는 대체 dbmaint 호출은 무엇?
 The command dbmaint & was used to run dbmaint in the background. However, dbmaint is terminated after logging out of the system. Which alternative dbmaint invocation lets dbmaint continue to run even when the user running the program logs out?
 A. job ""b dmaint
 B. dbmaint &>/dev/pts/null
@@ -1754,10 +2000,15 @@ E. wait dbmaint
 
 Correct Answer: C
 
-Explanation
-Explanation/Reference: dbmaint & 명령은 백그라운드에서 dbmaint를 실행하는 데 사용되었습니다. 그러나 dbmaint는 시스템에서 로그아웃한 후 종료됩니다. 프로그램을 실행 중인 사용자가 로그아웃하더라도 dbmaint를 계속 실행할 수 있는 대체 dbmaint 호출은 무엇?
+
+
+
+
+
+
 
 QUESTION 109
+다음 중 사용자의 홈 디렉토리에 있는 Bash 기록이 포함된 파일은 무엇?
 Which of the following files, located in a user’s home directory, contains the Bash history? 
 A. .bashrc_history 
 B. .bash_histfile 
@@ -1767,25 +2018,39 @@ E. .history_bash
 
 Correct Answer: D
 
-Explanation
-Explanation/Reference: 다음 중 사용자의 홈 디렉토리에 있는 Bash 기록이 포함된 파일은 무엇?
+
+
+
+
+
+
+
 
 QUESTION 110
+다음 중 RPM 패키지 관리를 사용할 때 현재 설치된 모든 패키지가 나열되는 명령은 무엇?
 Which of the following commands lists all currently installed packages when using RPM package
 management? 
 A. yum --query --all
 B. yum --list --installed
 C. rpm --query --list
 D. rpm --list --installed
-E. rpm --query –all
+E. rpm --query -all
 
 Correct Answer: E
+rpm 명령을 사용하여 시스템에 설치된 모든 패키지를 표시하는 명령어
+・ rpm -qa
+・ rpm --query --all
 
-Explanation
-Explanation/Reference: 다음 중 RPM 패키지 관리를 사용할 때 현재 설치된 모든 패키지가 나열되는 명령은 무엇?
+
+
+
+
+
 
 QUESTION 111
-Which of the following settings for umask ensures that new files have the default permissions -rwr-----?
+Explanation/Reference: 다음 중 새 파일에 기본 사용 권한 -rwr---을(를) 갖도록 하는 설정은 무엇?
+Which of the following settings for umask ensures that new files have the default permissions
+-rwr-----?
 A. 0017
 B. 0640
 C. 0038
@@ -1795,24 +2060,32 @@ E. 0027
 Correct Answer: E
 
 Explanation: E. 666 – 027 = 640 –> -rw-r—–
-Explanation/Reference: 다음 중 새 파일에 기본 사용 권한 -rwr---을(를) 갖도록 하는 설정은 무엇?
+
+
+
+
+
 
 QUESTION 112
+Explanation/Reference: vi의 일반 모드에서 텍스트의 역방향 검색을 시작하는 데 사용할 수 있는 문자는 무엇?
 When in Normal mode in vi, which character can be used to begin a reverse search of the text? 
 A. r
 B. /
 C. F
 D. ?
 E. s
-
 Correct Answer: D
-
 Explanation
 /: 정방향 검색
-?: 이전 검색
-Explanation/Reference: vi의 일반 모드에서 텍스트의 역방향 검색을 시작하는 데 사용할 수 있는 문자는 무엇?
+?: 이전(역방향) 검색
+
+
+
+
+
 
 QUESTION 113
+다음 중 전체 경로를 지정하지 않고 명령을 시작할 때 현재 셸이 실행할 실행 파일의 전체 경로를 표시할 수 있는 도구는 무엇? (2개 선택)
 Which of the following tools can show the complete path of an executable file that the current shell would execute when starting a command without specifying its complete path? (Choose two.) 
 A. find
 B. pwd
@@ -1820,14 +2093,22 @@ C. which
 D. locate
 E. type
 
-Correct Answer: CE
-
+Correct Answer: C, E
 Explanation: locate: the updated가 필요.
-Explanation/Reference: 다음 중 전체 경로를 지정하지 않고 명령을 시작할 때 현재 셸이 실행할 실행 파일의 전체 경로를 표시할 수 있는 도구는 무엇? (2개 선택)
+
+sub.
+지정한 커멘드가 통상의 커멘드인가, 쉘의 편입 커멘드인가, 앨리어스(alias)인가 등의 정보를 표시하는 커멘드는 다음 중 어느 것인가.
+ : type
+
+
+
+
+
+
 
 QUESTION 114
-Which of the following commands determines a file’s format by using a definition database file which
-contains information about all common file types?
+다음 중 모든 공통 파일 형식에 대한 정보가 포함된 정의 데이터베이스 파일을 사용하여 파일 형식을 결정하는 명령은 무엇?
+Which of the following commands determines a file’s format by using a definition database file which contains information about all common file types?
 A. type
 B. file
 C. magic
@@ -1836,19 +2117,27 @@ E. hash
 
 Correct Answer: B
 
-Explanation
-Explanation/Reference: 다음 중 모든 공통 파일 형식에 대한 정보가 포함된 정의 데이터베이스 파일을 사용하여 파일 형식을 결정하는 명령은 무엇?
+
+
+
+
+
 
 QUESTION 115
-Which command displays a list of all background tasks running in the current shell? (Specify ONLY the
-command without any path or parameters.)
+현재 셸에서 실행 중인 모든 백그라운드 작업 목록을 표시하는 명령은 무엇? (경로/매개 변수 없이 명령만 지정)
+Which command displays a list of all background tasks running in the current shell? (Specify ONLY the command without any path or parameters.)
 
 Correct Answer: jobs
 
-Explanation
-Explanation/Reference: 현재 셸에서 실행 중인 모든 백그라운드 작업 목록을 표시하는 명령은 무엇? (경로/매개 변수 없이 명령만 지정)
+
+
+
+
+
+
 
 QUESTION 116
+하드 디스크에서 부팅할 때 컴퓨터는 Linux 커널과 initramfs를 성공적으로 로드하지만 이후 시작 작업 중에 중단됩니다. Linux 기반 복구 CD를 사용하여 시스템을 부팅하여 이 문제를 조사할 때, 다음 중 문제의 근본 원인을 식별하는 데 도움이 되는 방법은 무엇?
 When booting from the hard disk, a computer successfully loads the Linux kernel and initramfs but hangs during the subsequent startup tasks. The system is booted using a Linux based rescue CD to investigate the problem. Which of the following methods helps to identify the root cause of the problem? 
 A. Using the dmesg command from the rescue CD’s shell to view the original system’s boot logs
 B. Investigating the file /proc/kmsg on the computer’s hard disk for possible errors
@@ -1865,11 +2154,22 @@ C. 컴퓨터 하드 디스크의 /var/log 파일에서 발생 가능한 오류 �
 D. chroot를 사용하여 하드 디스크의 파일 시스템으로 전환하고 dmesg를 사용하여 로그를 봅니다.
 <dmesg를 사용하여 첫 번째 부팅 프로세스의 문제를 해결 불가>
 E. 시스템이 복구 CD에서 부팅된 후 하드 드라이브에서 다시 재부팅 중
-Explanation/Reference: 하드 디스크에서 부팅할 때 컴퓨터는 Linux 커널과 initramfs를 성공적으로 로드하지만 이후 시작 작업 중에 중단됩니다. Linux 기반 복구 CD를 사용하여 시스템을 부팅하여 이 문제를 조사할 때, 다음 중 문제의 근본 원인을 식별하는 데 도움이 되는 방법은 무엇?
+
+
+
+
+
+
+
 
 QUESTION 117
+Explanation/Reference: System V init 구성에 다음 두 개의 심볼 링크가 지정되어 있습니다. 
+/etc/rc1.d/K01apache2
+/etc/rc2.d/S02apache2 
+이 링크에서 참조하는 스크립트는 언제 실행? (두개 선택.)
 Given the following two symbolic links in a System V init configuration: 
-/etc/rc1.d/K01apache2/etc/rc2.d/S02apache2 
+/etc/rc1.d/K01apache2
+/etc/rc2.d/S02apache2 
 When are the scripts executed that are referenced by these links? (Choose two.) 
 A. S02apache2is run when runlevel 2 is entered
 B. S02apache2is run when runlevel 2 is left
@@ -1877,7 +2177,7 @@ C. K01apache2is never run because K indicates a deactivated service
 D. Both S02apache2 and K01apache2are run during a system shutdown
 E. K01apache2is run when runlevel 1 is entered
 
-Correct Answer: AE
+Correct Answer: A, E
 
 Explanation:
 S 및 K 링크는 모두 초기 상태 변경이 발생할 때 특정 서비스를 처리하는 방법에 대한 OS 지침을 제공하는 동시에 서비스가 시작 또는 중지되는지 여부를 나타내며, 다음 번호는 스크립트가 적용될 시작 수준을 표시함. K01로 시작하는 모든 링크는 init 1(단일 사용자 모드)의 시스템 전환과 동시에 상대 서비스가 중단됨을 의미.
@@ -1887,9 +2187,7 @@ B. 실행 레벨 2가 남아 있을 때 S02apache2가 실행됩니다.
 C. K가 비활성화된 서비스를 나타내기 때문에 K01apache2가 실행되지 않습니다.
 D. 시스템 종료 중에 S02apache2 및 K01apache2가 모두 실행됩니다.
 E. 실행 수준 1을 입력하면 K01apache2가 실행됩니다.
-Explanation/Reference: System V init 구성에 다음 두 개의 심볼 링크가 지정되어 있습니다. 
-/etc/rc1.d/K01apache2	/etc/rc2.d/S02apache2 
-이 링크에서 참조하는 스크립트는 언제 실행? (두개 선택.)
+
 
 
 
