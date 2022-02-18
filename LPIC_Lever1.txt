@@ -42,15 +42,14 @@ Explanation: ext3과 ext4의 백분율은 동일
 
 4. 
 다음 중 /etc/fstab에 나열되지도 않고 시스템에 알려지지 않은 파일 시스템을 수동으로 마운트 할 경우 올바른 설명은?
-Which of the following is true when a file system, which is neither listed in /etc/fstab nor known to system, is
-mounted manually?
+Which of the following is true when a file system, which is neither listed in /etc/fstab nor known to system, is mounted manually?
 A. systemd ignores any manual mounts which are not done using the systemctl mountcommand
 B. The command systemctl mountsync can be used to create a mount unit based on the existing mount
 C. systemd automatically generates a mount unit and monitors the mount point without changing it 
 D. Unless a systemd mount unit is created, systemd unmounts the file system after a short period of time
 E. systemctl unmountmust be used to remove the mount because system opens a file descriptor on the
 mount point 
-Correct Answer: A
+Correct Answer: C
 
 Explanation
 A. systemd는 systemctl mount 명령을 사용하여 수행되지 않은 수동 마운트를 무시합니다.
@@ -285,6 +284,9 @@ dpkg -s <패키지명> 해당 패키지에 대한 정보 확인
 
 
 
+
+
+
 QUESTION 19
 다음 중 64비트 Linux 시스템에서 일반적으로 공유 라이브러리를 포함하는 디렉토리는 무엇? (두개 선택)
 Which of the following directories on a 64 bit Linux system typically contain shared libraries? (Choose two.) 
@@ -315,6 +317,10 @@ Explanation: Centos/Debina/Ubuntu(20)
 - GRUB2 설정 파일 "/boot/grub/grub.cfg" 인데 직접 편집하지는 않음
 
 
+
+
+
+
 QUESTION 21
 Explanation/Reference: 다음 중 foo 문자열로 끝나는 모든 패키지를 설치하는 명령은 무엇?
 Which of the following commands installs all packages with a name ending with the string foo? 
@@ -325,6 +331,12 @@ D. zypper install “*foo”
 E. zypper add “.*foo” 
 Correct Answer: D
 - zypper install | in 패키지명  :  패지키를 설치하는 명령어
+
+
+
+
+
+
 
 QUESTION 22
 Explanation/Reference: 다음 중 가상 시스템을 복제할 때 변경해야 하는 Linux 시스템의 속성은 무엇? (두 개 선택)
@@ -352,13 +364,19 @@ C. grub-mbrinstall /dev/sdc
 D. grub-setup /dev/sdc 
 E. grub-install /dev/sdc 
 Correct Answer: E
-- grub2-install /dev/sda
+- grub2-install /dev/sdc
 - grub-install /dev/sdc 
+
+세 번째라서 sd'c'가 붙네ㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 
 sub
 GRUB Legacy의 설정 파일 "/boot/grub/menu.lst"에서 루트 파티션을 첫 번째 디스크의 네 번째 파티션으로 지정하고 싶을 때
 - root (hd0,3)
 ※GRUB는 디스크, 파티션 모두 0부터 계산
+
+
+
+
 
 
 
@@ -372,6 +390,12 @@ D. 8e
 E. fd
 Correct Answer: B
 Explanation: 82 Linux Swap 	83 Linux
+
+
+
+
+
+
 
 
 QUESTION 25
@@ -389,12 +413,15 @@ B. yumd 서비스를 다시 시작한 후 yum 구성 변경이 활성화됩니�
 C. 패키지 리포지토리의 구성은 여러 파일로 나눌 수 있습니다.
 D. 저장소 구성에는 $basearch 또는 $releasever와 같은 변수가 포함될 수 있습니다.
 E. /etc/yum.repos.d/에 파일이 포함된 경우 /etc/yum.conf는 무시됩니다.
+
 - yum은 rpm(레드햇 패키지 관리 매니저)을 확장한 툴
 - yum 명령은 인터넷이나 미디어의 패키지 정보 데이터베이스를 사용하여 의존성 관계를 조정하면서 패키지를 설치 및 설치 제거
 - 리포지토리의 구성 파일(확장자 .repo)에는
   '$releasever'(Red Hat Enterprise Linux의 릴리스 버전) 및
   '$basearch'(시스템의 기본 아키텍처)와 같은 내장 변수가 URL에 설명되어 있음.
 - 네트워크를 통해 최신 패키지를 얻을 수 있음.
+
+
 
 
 
@@ -413,6 +440,9 @@ Correct Answer: E
 
 
 
+
+
+
 QUESTION 27
 다음 중 RPM 패키지 파일 foo.rpm의 종속성을 나열하는 명령은 무엇?
 Which of the following commands lists the dependencies of the RPM package file foo.rpm? 
@@ -426,6 +456,11 @@ Correct Answer: A
 -q Query 
 -p Package 
 -R Requires (Dependencies)
+
+
+
+
+
 
 
 QUESTION 28
@@ -446,6 +481,8 @@ niceness를 조정하여 COMMAND를 실행 =>process scheduling에 영향
 
 
 
+
+
 QUESTION 29
 다음 중 사용자 루트가 소유하는 /tmp/ 디렉토리 및 하위 디렉토리 내의 모든 파일과 디렉토리를 나열하는 명령은 무엇? (두개 선택)
 Which of the following commands list all files and directories within the /tmp/ directory and its 
@@ -456,6 +493,10 @@ C. find /tmp -uid root -print
 D. find /tmp -user root 
 E. find -path /tmp -user root -print 
 Correct Answer: A, D
+
+
+
+
 
 
 
@@ -484,6 +525,8 @@ Correct Answer: A, E
 
 
 
+
+
 QUESTION 31
 다음 vi 명령 중 현재 줄과 다음 줄 중 두 줄을 삭제하는 명령은 무엇?
 Which of the following vi commands deletes two lines, the current and the following line? 
@@ -493,6 +536,8 @@ C. 2dd
 D. dd2
 E. de12
 Correct Answer: C
+
+
 
 
 
@@ -516,6 +561,8 @@ Explanation:
 
 
 
+
+
 QUESTION 33
 어떤 프로그램이 특정 간격으로 명령을 실행및 프로그램 출력 표시를 새로 고침 실행? (경로/매개변수 없이 명령어만 입력)
 Which program runs a command in specific intervals and refreshes the display of the program’s output?
@@ -523,6 +570,8 @@ Which program runs a command in specific intervals and refreshes the display of 
 Correct Answer: watch
 Explanation
 지정한 커멘드를 일정 시간마다 반복 실행해, 결과를 표시하는 커멘드는 다음 중 어느 것인가. - watch
+
+
 
 
 
@@ -548,13 +597,17 @@ Correct Answer: B
 QUESTION 35
 다음 명령 중 텍스트 파일 userlist.txt의 모든 CR-LF 줄 바꿈을 Linux 표준 LF 줄 바꿈으로 변경하고 결과를 newlist.txt에 저장하는 명령은 무엇입니까?
 Which of the following commands changes all CR-LF line breaks in the text file userlist.txt to Linux standard LF line breaks and stores the result in newlist.txt? 
-A. tr -d ‘\r’ < userlist.txt > newlist.txt
+A. tr -d ‘\r’ <userlist.txt> newlist.txt
 B. tr -c ‘\n\r’ ‘’ <newlist.txt> userlist.txt
 C. tr ‘\r\n’ ‘’ <userlist.txt> newlist.txt
 D. tr ‘\r’ ‘\n’ userlist.txt newlist.txt
 E. tr -s ‘/^M/^J/’ userlist.txt newlist.txt
 Correct Answer: A
 Explanation: CR-LF( = \r\n) 삭제하려면 -> tr -d ‘\r’ [결과물]    <= bash 쉘에서 tr -d는 특정문자 제거
+
+
+
+
 
 
 
@@ -577,6 +630,9 @@ Correct Answer: D
 
 
 
+
+
+
 QUESTION 37
 다음 중 foo 명령의 출력을 화면에 표시하고 /tmp/foodata라는 파일에 기록하는 명령은 무엇입니까?
 Which of the following commands displays the output of the foo command on the screen and also writes it to a file called /tmp/foodata?
@@ -591,6 +647,8 @@ Correct Answer: D
 
 
 
+
+
 QUESTION 38
 Explanation/Reference: 사용자 프레드가 명령 echo 'fred $USER'을 실행하면 어떤 출력이 표시될까? 
 What output will be displayed when the user fred executes the following command?echo ‘fred $USER’?
@@ -600,6 +658,7 @@ C. ‘fred $USER’
 D. fred $USER
 E. ‘fred fred’ 
 Correct Answer: D
+
 
 
 
@@ -625,6 +684,7 @@ D. whatis - 한 줄 수동 페이지 설명을 표시합니다.
 
 
 
+
 QUESTION 40
 find의 출력을 xargs 명령으로 리디렉션할 때 파일 이름인 경우 어떤 옵션이 찾기 유용합니까?
 When redirecting the output of find to the xargs command, what option to find is useful if the filenames?
@@ -644,6 +704,8 @@ Explanation: 예시)find /tmp -name core -type f -print0 | xargs -0 /bin/rm -f
 
 
 
+
+
 QUESTION 41 
 다음 중 시스템이 실행된 기간을 결정하는 데 사용할 수 있는 명령은 무엇? (두개 선택)
 Which of the following commands can be used to determine how long the system has been running?
@@ -655,6 +717,8 @@ D. uname -u
 E. top
 Correct Answer: A, E
 가동시간이나 부하 평균 등을 표시하는 커맨드
+
+
 
 
 
@@ -679,6 +743,10 @@ E. ls의 모든 출력은 폐기됩니다.
 
 
 
+
+
+
+
 QUESTION 43
 Explanation/Reference: 다음 파일 이름과 일치하는 와일드카드를 선택. (두개 선택) ttyS0 ttyS1 ttyS2
 Which wildcards will match the following filenames? (Choose two.) ttyS0 ttyS1 ttyS2
@@ -698,6 +766,7 @@ A: [1-5]에서 0이 누락되어 A가 작동 X. 만약, ttyS[0-5]이면 답이 �
 
 
 
+
 QUESTION 44
 다음 중 ls의 출력을 표준 오류로 리디렉션하는 명령은 무엇?
 Which of the following commands redirects the output of ls to standard error?
@@ -710,6 +779,7 @@ Correct Answer: C
 Explanation: 
 D: >기호 사용안해서 X
 E: >>기호는 STDERR(2)에 추가 불가. >>기호는 ‘ls’중 하나를 추가할 파일 필요 따라서 X
+
 
 
 
@@ -757,6 +827,8 @@ cut -c 2 /etc/passwd
 
 
 
+
+
 QUESTION 47
 다음 정규식 중 하나의 대문자를 나타내는 것은 무엇?
 Which of the following regular expressions represents a single upper-case letter? 
@@ -766,6 +838,8 @@ C. !a-z
 D. %C
 E. {AZ} 
 Correct Answer: B
+
+
 
 
 
@@ -813,6 +887,8 @@ Correct Answer: E
 
 
 
+
+
 QUESTION 50
 마운트하기 위해 /etc/fstab에 명시적 장치를 제공하는 대신 원하는 파티션을 식별하는 데 사용할 수 있는 다른 옵션은 무엇? (두개 선택)
 Instead of supplying an explicit device in /etc/fstab for mounting, what other options may be used to identify
@@ -831,9 +907,10 @@ Correct Answer: A, E
 
 
 
+
+
 QUESTION 51
-yum 저장소는 관련 패키지 세트를 선언할 수 있습니다.
-admintools 그룹에 속한 모든 패키지를 설치하는 yum 명령은 무엇입니까?
+yum 저장소는 관련 패키지 세트를 선언할 수 있습니다. admintools 그룹에 속한 모든 패키지를 설치하는 yum 명령은 무엇입니까?
 A yum repository can declare sets of related packages. 
 Which yum command installs all packages belonging to the group admintools? 
 A. yum pkgsel --install admintools 
@@ -848,13 +925,15 @@ groupinstall : 패키지 그룹을 설치하고 싶다.
 
 
 
+
 QUESTION 52
-Explanation/Reference: yum 리포지토리는 관련 패키지 집합을 선언할 수 있습니다. 그룹 관리 도구에 속하는 모든 패키지를 설치하는 yum 명령은 무엇?
-What directory contains configuration files for additional yum repositories? (Specify the full path to the
-directory.)
-Correct Answer: /etc/yum.repos.d/yum.conf
+추가적인 yum 리포지토리에 대한 구성 파일이 들어 있는 디렉토리는 무엇입니까?
+What directory contains configuration files for additional yum repositories? (Specify the full path to the directory.)
+Correct Answer: /etc/yum.repos.d/
 yum의 설정 파일은 「/etc/yum.conf」
 패키지의 취득원(리포지토리)은 「/etc/yum.repos.d」 디렉토리내의 파일로 설정합니다.
+
+
 
 
 
@@ -871,13 +950,19 @@ C. grub-install current /dev/sda0
 D. grub-install /dev/sda0
 E. grub-install current /dev/sda1
 Correct Answer: A
-root (hd0, 0)
 
+
+
+root (hd0, 0)
 
 sub
 다음은 GRUB2 설정 파일 "/boot/grub/grub.cfg"의 발췌입니다. 루트 파티션을 두 번째 디스크의 세 번째 파티션으로 지정하고 싶습니다.
 set root = (hd1, 3)
 GRUB2는 디스크 번호 0부터 파티션 번호 1부터 세어짐
+
+
+
+
 
 
 
@@ -906,6 +991,8 @@ E: fsck binaries 파일은 부팅 후 제공되어야 하며 /boot에 속하지 
 
 
 
+
+
 QUESTION 55
 Debian 패키지 관리자가 소프트웨어 패키지를 다운로드하는 네트워크 위치를 정의하는 파일은 무엇?
 Which file defines the network locations from where the Debian package manager downloads software
@@ -917,6 +1004,7 @@ D. /etc/dpkg/dselect.cfg
 E. /etc/apt/sources.list
 Correct Answer: E
 - sources.list : 소스 목록 /etc/apt/sources.list 및 /etc/apt/sources.list.d/에 포함된 파일은 여러 곳의 활성화된 소스 저장소(리포지터리)를 지정하는 파일입니다.
+
 
 
 
@@ -936,6 +1024,7 @@ Correct Answer: B
 Explanation:
 - dpkg -P(--purge) pkgname -> 패키지 + 구성파일 삭제 
 - dpkg -r(--remove) pkgname -> 패키지 제거 (구성 파일 유지)
+
 
 
 
@@ -984,6 +1073,8 @@ E. 컨테이너 하이퍼바이저가 별도의 커널 실행을 생성하므로
 
 
 
+
+
 QUESTION 58
 종속성이 만족스럽지 않아 로컬 Debian 패키지를 설치하지 못했습니다. 다음 중 누락된 종속성을 설치하고 중단된 패키지 설치를 완료하는 명령은 무엇?
 The installation of a local Debian package failed due to unsatisfied dependencies. 
@@ -1022,6 +1113,8 @@ GRUB 설정 파일 「/boot/grub/menu.lst」, 배포에 따라서는 「/boot/gr
 
 
 
+
+
 QUESTION 60
 Explanation/Reference: ldd 명령의 목적은 무엇?
 What is the purpose of the ldd command?
@@ -1031,7 +1124,7 @@ C. It turns a dynamically linked binary into a static binary
 D. It defines which version of a library should be used by default
 E. It runs a binary with an alternate library search path
 Correct Answer: A
-A. 이진 파일을 실행해야 하는 공유 라이브러리를 나열합니다.
+A. 바이너리를 실행해야 하는 공유 라이브러리를 나열합니다.
 B. 설치된 공유 라이브러리를 설치하고 업데이트합니다.
 C. 동적으로 연결된 이진수를 정적 이진수로 변환합니다.
 D. 기본적으로 사용할 라이브러리 버전을 정의합니다.
@@ -1165,7 +1258,7 @@ E. filea.txt has the SetUID bit set which imposes the restriction that only the 
 Correct Answer: A, B
 Explanation: 
 A. filea.txt는 다른 사용자의 소유이며 일반 사용자는 다른 사용자의 파일 권한을 변경할 수 없습니다. 
-B. filea.txt는 사용 권한이 과금할 수 없는 고정 값인 심볼 링크입니다.
+B. filea.txt는 사용 권한이 청구될 수 없는 고정 값인 심볼 링크입니다.
 C. filea.txt에 고정 비트가 설정되어 있으므로 일반 사용자는 이 사용 권한을 제거할 수 없습니다.
 D. filea.txt는 대상에서 사용 권한이 상속되어 직접 설정할 수 없는 하드 링크입니다.
 E. filea.txt에는 루트 사용자만 파일을 변경할 수 있는 제한이 적용되는 SetUID 비트 집합이 있습니다.
@@ -1321,7 +1414,6 @@ D. man 1.command
 E. man -s 1 command
 
 Correct Answer: C
-
 Explanation :E도 정답 가능
 
 
@@ -1451,8 +1543,8 @@ ctrl+z는 중지로, SIGSTP입니다.
 
 
 QUESTION 81
-다음 문자열에 정규식 s/[ABC] [abc]/xx/를 적용하면 출력은 어떻게 됩니까? ABCabc -
-What is the output when the regular expression s/[ABC] [abc]/xx/is applied to the following string? ABCabc -
+다음 문자열에 정규식 s/[ABC] [abc]/xx/를 적용하면 출력은 어떻게 됩니까? ABCabc
+What is the output when the regular expression s/[ABC] [abc]/xx/ is applied to the following string? ABCabc
 A. ABxxbc
 B. xxCxxc
 C. xxxxxx
@@ -1461,7 +1553,14 @@ E. Axxaxx
 
 Correct Answer: A
 
+sed 정규식
+s 는 문자를 치환한다는 뜻
+위의 정규식은 "[ABC] [abc]"를 "xx"로 바꾸겠다는 말 같은데...
 
+s/문자열1/문자열2/
+    각 행의 최초 등장 문자열1을 문자열2로 치환
+s/문자열1/문자열2/g
+    모든 문자열1을 문자열2로 치환
 
 
 
@@ -1510,8 +1609,10 @@ B. 0
 C. 10
 D. 15
 E. 20
-Correct Answer: B
-Explanation: 명령이 없을 때는 0
+Correct Answer: C
+nice 명령으로 시작하면 10
+없이 시작하면 0
+
 
 
 
@@ -1528,7 +1629,7 @@ C. rmdir ~/’dir’
 D. rmdir ~/\dir
 E. rmdir ‘~/\dir’
 
-Correct Answer: D
+Correct Answer: A
 
 
 
@@ -1644,7 +1745,7 @@ Correct Answer: B
 
 Explanation
 A. 명령의 출력이 /dev/null로 리디렉션됩니다.
-B. 명령은 현재 셸을 배경으로 실행됩니다.
+B. 명령은 현재 셸을 백그라운드로 실행됩니다.
 C. 명령의 출력은 셸에 의해 실행됩니다.
 D. 명령은 init 프로세스의 직계 하위 항목으로 실행됩니다.
 E. 명령의 입력은 /dev/null에서 읽습니다.
@@ -1698,11 +1799,13 @@ E. 일반적으로 짧은 옵션(예: -h)만 허용하는 명령에 긴 옵션(�
 
 
 
+
 QUESTION 94
 이미 실행 중인 프로세스의 우선 순위를 변경하는 데 사용되는 명령은 무엇? (경로/매개 변수 없이 명령만)
-Which command is used to change the priority of an already running process? (Specify ONLY the
-command without any path or parameters.)
+Which command is used to change the priority of an already running process? (Specify ONLY the command without any path or parameters.)
 Correct Answer: renice
+
+
 
 
 
@@ -1841,13 +1944,10 @@ lspci
 
 
 QUESTION 101
+기본 실행 수준을 설정하는 데 일반적으로 사용되는 System V init 구성 파일은 무엇입니까?
 Which System V init configuration file is commonly used to set the default run level? (Specify the full name of the file, including path.) 
-
 Correct Answer: /etc/inittab
 
-Explanation
-Explanation/Reference:
-  
   
   
   
@@ -1878,13 +1978,13 @@ E. 업그레이드 -> 이전 패키지를 업데이트하고 유지 관리합니
 
 QUESTION 103
 다음 입력 스트림이 주어집니다.
-        => txt1.txt at text.txtxtB.txt 
+        => txt1.txt   atxt.txt   txtB.txt
 다음 중 이 입력 스트림을 다음 출력 스트림으로 전환하는 정규식은 무엇?  
-        => txt1.bak.txt at text.bak.txtxtB.bak.txt
+        => txt1.bak.txt   atxt.bak.txt   txtB.bak.txt 
 Given the following input stream: 
-txt1.txt atxt.txt txtB.txt 
+txt1.txt   atxt.txt   txtB.txt
 Which of the following regular expressions turns this input stream into the following output stream? 
-txt1.bak.txt atxt.bak.txt txtB.bak.txt 
+txt1.bak.txt   atxt.bak.txt   txtB.bak.txt 
 A. s/^.txt/.bak/
 B. s/txt/bak.txt/
 C. s/txt$/bak.txt/ 
@@ -1893,6 +1993,7 @@ E. s/[.txt]/.bak$1/
 
 Correct Answer: C
 
+$는 끝에 txt로 오는 애들 찾아냄
 
 
 
@@ -1922,10 +2023,10 @@ Explanation: - i가 구간인 경우
 
 
 QUESTION 105
-/proc 파일 시스템의 어느 파일이 부트 로더에서 커널로 전달되는 매개 변수를 나열합니까?
+부트로더에서 커널로 전달된 매개변수를 나열하는 /proc 파일 시스템의 파일은 무엇입니까? (경로 없이 파일명만 지정)
 (파일 이름만 지정.)
-Which file in the /proc filesystem lists parameters passed from the bootloader to the kernel? (Specify the file name only without any path and with path
-
+Which file in the /proc filesystem lists parameters passed from the bootloader to the kernel?
+(Specify the file name only without any path and with path
 Correct Answer: cmdline
 
 
@@ -1939,13 +2040,11 @@ QUESTION 106
 결함이 있는 커널 모듈로 인해 네트워크 인터페이스 카드에 문제가 발생하고 있습니다. 
 다음 중 시스템이 부팅될 때 이 모듈이 자동으로 로드되지 않도록 하는 작업은 무엇?
 A faulty kernel module is causing issues with a network interface card. 
-Which of the following actions ensures that this module is not loaded automatically when the system
-boots? 
+Which of the following actions ensures that this module is not loaded automatically when the system boots? 
 A. Using lsmod --remove --autocleanwithout specifying the name of a specific module 
 B. Using modinfo -kfollowed by the name of the offending module
 C. Using modprobe -rfollowed by the name of the offending module
-D. Adding a blacklist line including the name of the offending module to the file 
-/etc/modprobe.d/blacklist.conf 
+D. Adding a blacklist line including the name of the offending module to the file /etc/modprobe.d/blacklist.conf 
 E. Deleting the kernel module’s directory from the file system and recompiling the kernel, including its
 modules 
 
@@ -1955,8 +2054,7 @@ Explanation:
 A. 특정 모듈의 이름을 지정하지 않고 lsmod --remove --autoclean 사용 
 B. modinfo -k 사용, 문제 있는 모듈의 이름 사용
 C. modprobe 사용 -r 뒤에 위반 모듈 이름이 붙습니다.
-D. 파일에 위반되는 모듈의 이름이 포함된 블랙리스트 줄을 추가합니다. 
-/etc/modprobe.d/sys.conf 
+D. /etc/modprobe.d/blacklist.conf 파일에 위반되는 모듈의 이름이 포함된 블랙리스트 줄을 추가합니다. 
 E. 파일 시스템에서 커널 모듈의 디렉토리를 삭제하고 해당 모듈을 포함하여 커널을 다시 컴파일합니다.
 
 
@@ -1973,6 +2071,12 @@ B. The first stage boot loader
 C. The default swap space file
 D. The Linux default shell binaries
 E. The user home directories
+
+A. Linux 루트 파일 시스템
+B. 1단계 부트로더
+C. 기본 스왑 공간 파일
+D. Linux 기본 셸 바이너리
+E. 사용자 홈 디렉토리
 
 Correct Answer: B
 부트 로더나 기동에 필요한 드라이버 등이 놓여져 있다
@@ -2028,8 +2132,7 @@ Correct Answer: D
 
 QUESTION 110
 다음 중 RPM 패키지 관리를 사용할 때 현재 설치된 모든 패키지가 나열되는 명령은 무엇?
-Which of the following commands lists all currently installed packages when using RPM package
-management? 
+Which of the following commands lists all currently installed packages when using RPM package management? 
 A. yum --query --all
 B. yum --list --installed
 C. rpm --query --list
@@ -2048,9 +2151,8 @@ rpm 명령을 사용하여 시스템에 설치된 모든 패키지를 표시하�
 
 
 QUESTION 111
-Explanation/Reference: 다음 중 새 파일에 기본 사용 권한 -rwr---을(를) 갖도록 하는 설정은 무엇?
-Which of the following settings for umask ensures that new files have the default permissions
--rwr-----?
+Explanation/Reference: 다음 중 새 파일에 기본 사용 권한 -rw-r-----을(를) 갖도록 하는 설정은 무엇?
+Which of the following settings for umask ensures that new files have the default permissions -rw-r-----?
 A. 0017
 B. 0640
 C. 0038
@@ -2058,8 +2160,8 @@ D. 0226
 E. 0027
 
 Correct Answer: E
-
-Explanation: E. 666 – 027 = 640 –> -rw-r—–
+첫 번째 - 파일, 첫 번째 d 디렉토리
+Explanation: E. 666 – 027 = 640 –> -rw-r-----
 
 
 
