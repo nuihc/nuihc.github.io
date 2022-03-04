@@ -1183,7 +1183,7 @@ C. dig -t ns www.example.org
 D. dig -t a www.example.org 
 E. dig -t soa www.example.org 
 
-Correct Answer: 
+Correct Answer: C
 Section: (none)
 Explanation: 
 인쇄된 출력물에서처럼, 그냥 보기만 하면 됩니다.
