@@ -1333,7 +1333,7 @@ Explanation/Reference: 다음 중 시스템의 표준 시간대를 캐나다 동
 QUESTION 92(Q 107)
 What option to useradd creates a new user’s home directory and provisions it with a set of standard files? (Specify only the option name without any values or parameters.)
 
-Correct Answer: -D? -M?
+Correct Answer: -D?
 Section: (none)
 Explanation: 
 useradd(/etc/defaults/useradd)의 구성 파일이 편집되지 않았다고 가정할 수 있는 경우 기본적으로 '-m' 옵션을 사용하여 기본값을 재정의하여 홈 디렉토리를 작성하도록 강제 추가해야 합니다.
