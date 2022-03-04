@@ -1147,7 +1147,7 @@ Explanation/Reference: ssh는 SSH 에이전트와 상호 작용하기 위해 어
 QUESTION 79(Q 90)
 Which parameter of the ssh command specifies the location of the private key used for login attempts? (Specify only the option name without any values or parameters.) 
 
-Correct Answer: ssh-i
+Correct Answer: ssh -i
 Section: (none)
 Explanation: 
 -I (identity_file)
