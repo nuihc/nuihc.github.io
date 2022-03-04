@@ -193,7 +193,7 @@ E. timeq
 Correct Answer: D
 Section: (none)
 Explanation
-Explanation/Reference: 다음 중 각 사용자에 대해 /etc/shadow에 저장되는 정보는 무엇입니까?
+Explanation/Reference: 다음 명령 중 활성 시스템 타이머를 모두 보여주는 것은 무엇입니까?
 
 QUESTION 16(Q 18)
 18.Which of the following tasks can the date command accomplish? (Choose two.) 
