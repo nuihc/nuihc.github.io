@@ -807,7 +807,7 @@ Explanation/Reference: CUPS 구성 디렉토리 내에 있는 어떤 파일에 �
 QUESTION 56(Q 64)
 Which file is processed by newaliases? (Specify the full name of the file, including path.) 
 
-Correct Answer: /etc/aliase
+Correct Answer: /etc/aliases
 Section: (none)
 Explanation: (객관식, 주관식 둘 다 가능)
 먼저 /etc/alias를 편집하고 newalias 명령을 실행하면 /etc/alias.db!라는 별칭 데이터베이스가 업데이트 됨. 또한 alias.db는 이진 파일이므로 /etc/alias 파일을 업데이트하는 것이 좋습니다.
