@@ -854,7 +854,7 @@ Section: (none)
 Explanation: 
 lpstat - [목적지(s)] : 지정된 대상에 대기 중인 작업을 표시
 만약, 목적지가 없을 경우, -> 대상이 지정되어 모든 작업이 표시
-Explanation/Reference:
+Explanation/Reference:다음 명령 중 인쇄 대기열에 작업 목록을 표시하는 것은 무엇입니까?
 
 QUESTION 60(Q 69)
 On a system using systemd-journald, which of the following commands add the message Howdy to the system log? (Choose two.) 
