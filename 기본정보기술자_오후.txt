@@ -1,0 +1,604 @@
+1. 정보 세큐리티(필수)
+---------
+2.소프트웨어 하드웨어
+3.데이터베이스(선택)
+4.네트워크
+5.소프트웨어 설계(선택)
+---------
+6.프로젝트 매니지먼트
+7. 서비스 매니지먼트
+8. 시스템 전략
+9. 경영전략, 기업과 법무
+---------
+10. 데이터 구조 및 알고리즘(필수)
+11. 소프트웨어 개발 자바 (선택)
+
+
+2019 가을
+1. 정보 세큐리티
+텔레워크 도입
+사무업무만 가능한 사무PC
+사무업무 및 개발 업무 가능한 개발PC
+개발부는 개발 PC
+개발부 이외는 사무PC
+
+			인터넷
+사무실---------방화벽FW------서버실
+192.168.0.0/24             프로킨서버203.0.113.20
+사무PC....사무PC
+
+개발실---------방화벽FW------서버실
+192.168.1.0/24              개발서버....개발서버192.168.128.0/20
+개발PC....개발PC
+
+FW에서는 개발실 네트워크로부터만 개발 서버에 HTTP over TLS(이하 HTTPS) 또는 SSH로만 액세스 가능
+사무PC, 개발PC에서의 외부 인터넷 사이트 접속은 프로킨 서버만 경유, 통신 제한
+
+텔레워크는 씬 클라이언트 단말을 지급
+A사 네트워크 접속을 위한 VPN
+화면 전송형 가상 데스크탑 환경 VDI
+
+
+- bitap 알고리즘
+텍스트의 패턴과 비슷한 부분이 포함되어 있는지 확인하는 알고리즘
+함수1
+TEXT[] 대상 문자열
+PAT[] 검색 문자열
+TEXT[]에서 해당되는 
+
+논리 시프트
+부호를 고려하지 않고 시프트 계산
+넘치는 비트는 버려지고, 모자란 비트는 0을 채움
+
+
+MASK[] A~Z 각 문자에 해당하는 비트마스크를 각 배열에 저장
+
+
+2019 봄
+
+#정보세큐리티
+Single Sign-On
+여러 개의 사이트에서 한번의 로그인으로 여러가지 다른 사이트들을 자동적으로 접속하여 이용하는 방법
+통합된 하나의 ID/PW로 여러 사이트 접시 접속
+
+A의 판매 관리 시스템을 B사가 제공하는 새로운 판매 관리 시스템(B사의 클라우드 서비스)으로 이행함
+
+A사의 이용자 인증은 B사의 클라우드 서비스에 대해서도 A사 인증 서버에서 실시
+이때 사용하는 ★[비밀번호]는 B사의 클라우드 서비스에 전송하지 않음
+
+아이덴티티 공급업체(IdP, Identity Provider)란 디지털 아이덴티티를 저장 및 관리해 주는 서비스 업체
+네이버, 구글, 페이스북 아이디로 다른 사이트에서 로그인
+
+사냐에 idP를 설치, 인증 결과에 디지털 서명을 부가하고 B사 클라우드 서비스로 송신
+
+B사 클라우드 서비스는 첨부된 디지털 서명을 사용하여 수신된 인증 정보에 ★[[변조]]이 없는지 확인
+이를 위해 idP의 ★[[공개키]]를 B사 클라우드 서비스에 등록해야 함
+
+B사 클라우드 서비스는 접속원의 IP주소를 A사로 한정하는 기능은 제공하지 않지만, 한정할 수 있다.
+그 이유는 ★[[Web브라우저가 idP와 통신하는 것]] 이 필요가 있지만, idP를 사내LAN에 설치하는 것으로 사외에서 B사 크라우드 서비스를 이용하려고 해도 ★[[B사 클라우드 서비스가 이용자 인증 정보를 검증하여 Web브라우저로 반송(회신)]] 하는 송신에 실패하여, 이용자 인증되지 않기 때문이다.
+
+1.이용자는, 웹 브라우저로부터 B사 클라우드 서비스에 액세스의 요구를 송신한다.
+→B사 클라우드 서비스에서는 접속원의 IP주소를 제한하고 있지 않으므로 금지되지 않는다.
+2.B사 클라우드 서비스는 액세스 요구를 IdP에 전송하는 지시를 웹 브라우저에 회신한다.
+3.웹 브라우저는 ②의 전송 지시에 따라 IdP에 액세스 요구를 회신한다.
+→인터넷을 통한 사내 LAN에 대한 통신이 되므로 방화벽으로 차단된다.
+
+#데이터베이스
+D중학교에서는, 전입생을 받아들이는 경우, 전출원의 중학교로부터 수령한 정기 건강 진단의 결과의 정보를 데이타베이스에 등록한다. 건강 진단 결과 테이블에는, 진료자 ID와 연도에 ★[[기본키]]제약을 설정하고, 진찰자 ID에 진찰자 정보테이블은 진찰자 ID에 ★[[참조]]제약을 설정하고 있다. 이 제약에 의하면, 전입생의 정기건강진단 결과의 정보의 건강진단 결과표에의 등록은, 진료자 정보표에 전입생의 정보를 등록한 후에 실시할 필요가 있다.
+
+SELECT 신장계급, 계급하한, COUNT(*)
+FROM ~ ~ RIGHT OUTER JOIN 신장계급표 ON
+...
+GROUP BY 신장계급, 계급하한, 계급상한
+...
+
+RIGHT OUTER JOIN로 인하여 190이상이 아무도 없음에도 카운트 됨
+COUNT(*)를 쓰면 단순히 전채행을 카운트해서 NULL행도 세어버림
+따라서 NULL 값이 들어간 [[신장]]으로 수정해야 함
+★[[COUNT(신장)]]
+
+#소프트웨어설계
+2진수 부호화는 두 가지
+아스키코드는 고정길이 부호화, 
+모스부호, 허프만 부호화는 가변 길이 부호하
+
+허프만 부호화는 빈도수가 높으면 낮은 비트를 사용하고, 빈도가 높으면 높은 비트를 사용하는 방식
+JPEG, MPEG 등의 압축, 부호화 표준 규격에도 사용
+
+허프만 트리
+2진트리이다.
+모든 에다의 분기(직계 자식)가 두 개 이하로 구성된 나무구조
+부모 절(노트)는 직계 자식 절(노드)의 합이다.
+자식이 없는 절은 하(리프)는 해당 문자의 출현 횟수를 값으로 가진다.
+부모가 없는 절 (네)뿌리는 총 문자열의 문자수의 값을 가진다.
+
+
+허프만 트리는 배열에 의해 진행된다.
+1. 노드(절)의 값을 저장할 1차원 배열을 준비.
+2. 문자 출현 횟수 테이블을 보고, 각 문자에 대응하는 리프의 값을 배열의 선두 요소부터 순서대로 저장
+(1차원 배열에 출현횟수표가 작성됨)
+3. 부모가 작성되지 않은 절 두 개를 선택하여 왼쪽 자식, 오른쪽 자식으로 하는 부모의 절 하나를 작성한다.
+이 부모 절의 값은 배열에 값이 저장된 마지막 요소의 다음 요소에 저장된다.
+절의 선택은 절의 값이 작은 순서로 실시하여 같은 값을 가지는 절이 2개 이상 있는 경우는
+배열의 선두에 가까운 요소에 값이 격납되어 있는 절을 선택한다.
+(출현 횟수가 가장 적은 절 2개를 선택하고 그 합을 부모 절로 하고, 이 부모 절의 값을 가장 우측 요소 다음 요소에 격납함)
+4. 부모가 작성되지 않은 절이 하나가 될 때까지 3을 반복한다.
+
+
+허프만 트리로 문자열의 비트(비트 표현)
+1. 부모의 왼쪽 자식 0, 오른쪽 자식 1을 연결하는 노드에 할당한다.
+2. 뿌리(최상단 부모)에서 각 문자에 해당되는 잎(최하단 자식)까지 가는 길을 비트로 표현
+
+
+          하프만부호화에 의해 압축하였을 때의 총 비트장
+압축율 = ---------------------------------
+            2비트의 고정길이로 표현하였을 때의 총 비트장
+A 010	1회
+B 1		7회
+C 00 	3회
+D 011	2회
+
+3비트 * 1회 + 1비트 * 7회 + 2비트 * 3회 + 3비트 * 2회 = 22비트장
+--------------------------------------------------
+문자열 ABBBBBBBCCCDD 인 경우 문자는 총 13글자.
+2비트로 하나의 글자를 표현할 수 있으니 13글자 * 2비트 = 26비트장
+=0.85
+
+
+허프만 부호화 프로그램화
+1. parent, left, right, freq 배열, 요소번호 0부터 시작. 모든 요소는 -1로 초기화
+2. parent 부모 요소(인덱스), left 왼자식 요소, right 오른자식 요소, freq 절의 값
+절이 잎이면 left, right는 -1을 가짐
+절이 뿌리이면 parent는 -1을 가짐
+(자식)・→*(부모)
+
+3. 서브 프로그램 Huffman
+ ①~⑤를 받아 허프만 트리를 표현하는 배열 작성
+①잎인 절의 개수 size (총 문자열의 종류수)
+②초기화된 배열 parent
+③초기화된 배열 left
+④초기화된 배열 right
+⑤초기화 후 문자의 출현 횟수가 요소 번호 0부터 순서대로 저장된 배열 freq
+
+4. 서브 프로그램 SortNode
+부모가 작성되지 않은 절을 추출
+절의 값을 오름차순으로 정렬
+절을 나타내는 요소 번호를 순서대로 배열 node에 저장
+그 개수를 변수 nsize에 저장한다.
+★[[nsize ≧ 2]]
+
+
+nsize 와 node[] 는 출력용 변수
+nsiz는 node[] 안의 정렬 대상으로 한, 절의 개수
+node[] 는 절 값의 오름차순으로 격납한, 부모가 작성되어 있지 않은 절을 표시한 요소번호(인덱스)를 포함하는 배열
+
+・nsize <- 0
+■  i : 0, i < size, 1
+ |  ↑ ★[[parent[i]＜0]]
+ |  |  ▪ node[nsize]  <- i
+ |  ↓  ▪ nsize <- nsize + 1
+ | 
+ ■
+부모배열의 값이 0보다 작은 건 -1, 즉, 부모가 없는 요소의 번호를 node[]에 격납하고 있으니 이 조건이 맞음
+
+
+5. 서브 프로그램 Sort
+절을 나타내는 요소 번호의 배열 node를 받아서 요소 번호에 대응하는 요소가 나타내는 절의 값이 오름차순이 되도록 정렬한다. 절의 값이 서로 같으면 정렬하기 직전의 순서에 따른다.
+
+
+다른 서브 프로그램
+허프만 트리에서 비트 표현을 작성하는 프로그램
+
+★[[parent[k]≧0]]
+부모가 0보다 큰 경우에만 if
+
+★[[left[parent[k]]=k]]
+참이 0이고 거짓이 1로 되어 있으니 이 조건으로 다기선택 if
+표 그려보고 참조하면 됨
+
+
+#소프트웨어 개발
+ますめ [升目] 눈금종이, 바둑판 같은
+
+　미로 위의 위치는 2 차원 좌표 (x, y)로 표시됩니다. x와 y는 모두 음이 아닌 정수입니다. 한 위치를 기준으로 x의 값이 커지는 방각을 동, 작아지는 방각을 서쪽, y의 값이 커지는 방각을 남쪽, 작아지는 방각을 북으로 한다.
+　코마는 동서남북 중 하나를 향하고 있으며, 향하고 있는 방각을 기준으로 다음의 3가지 조작을 외부에서 접수한다.
+
+① 왼쪽 방향으로 방향을 바꾼다.
+② 오른쪽 방향으로 방향을 바꾼다.
+③ 인접하는 전방의 경이 통로라면 1경 전진한다.
+
+(1) 클래스 Maze는 미로를 나타냅니다. 생성자의 인수에는 문자열로 표현한 미로와 미로의 서단에서 동단까지의 경의 개수를 지정한다. 미로를 표현하는 문자열은 1단을 나타내는 문자를 서쪽에서 동쪽으로 순서대로 늘어놓은 1행분의 문자열을 북쪽에서 남쪽으로 순차적으로 연결한 것이다. 升의 종류는 char 형의 값으로 표현된다. "*"는 벽을, 다른 값은 통로를 나타내고, "S"는 시작 지점을, "G"는 목표 지점을 나타냅니다. 인수에 오류가 없어야 한다.
+　getStartLocation 메소드는 시작점의 좌표를 반환합니다. isGoal 메서드는 지정된 좌표의 존이 목표 지점이면 true를 반환하고 그렇지 않으면 false를 반환합니다. isBlank 메서드는 지정된 좌표의 궤가 통로이면 true를, 벽이면 false를 반환합니다.
+
+(2) 클래스 Piece는 미로에 놓인 조각을 나타냅니다. 생성자의 인수로 미로를 지정합니다. 인스턴스는 처음에는 시작 지점에 위치하고 북쪽을 향합니다.
+　turnLeft 메서드는 왼쪽 방향으로, turnRight는 오른쪽 방향으로 방향을 바꿉니다.
+　메소드 tryStepForward는 인접한 전방의 升가 통로이면 1升 전진하고, 전진한 방각을 이력 리스트에 추가하고 나서 true를 돌려준다. 통로가 아니면 전진하지 않고 false를 반환한다.
+　isAtGoal 메서드는 목표 지점에 있으면 true를 반환하고 그렇지 않으면 false를 반환합니다.
+　메소드 getHistory는 히스토리 목록을 리턴합니다.
+
+(3) 열거 Direction은 방각을 나타냅니다.
+　메서드 left는 열거 상수(정수)가 나타내는 방각을 향해 왼쪽 방위각을, right는 오른쪽 방각을 반환합니다.
+(4) 클래스 Location은 미로상의 경의 위치를 ​​나타내는 좌표를 나타낸다.
+(5) 클래스 PlayMaze는 그림 1에 표시된 시작 지점에서 목표 지점에 이르기까지 조각을 조작 한 다음 기록 목록을 표시합니다.
+
+〔１〕
+public class Maze {
+   private final String mazeData;
+   private final int width;
+   private final Location startLocation;
+
+   public Maze(String mazeData, int width) {
+      this.nazeData = mazeData;
+      this.width = width;
+      startLocat ion = LocationOf ('S');
+   }
+
+   public Location getStartLocation() { return startLocation; }
+
+
+   public boolean isGoal(Location loc) {
+      return mazeData.charAt(loc.y [[a]] width + loc.x) == 'G';
+   }
+	// a : *
+
+   public boolean isBLank(Location loc) {
+      return mazeData.charAt(loc.y [[a]] width + loc.x) != '*';
+   }
+
+
+   private Location locationOf(char c) {
+      int index = mazeData.indexOf(c);
+      return new Location(index [[b]] width, index / width);
+   }
+}
+	// b : %
+　
+
+〔２〕
+import java.util.ArrayList;
+import java.util.List;
+
+public class Piece {
+   private final Maze maze;
+   private Location location;
+   private Direction direction = Direction.NORTH;
+   private final List<Direction> histoty = new ArrayList<>();
+
+
+   public Piece(Maze maze) {
+     this. naze = maze;
+     location = maze.getStartLocation();
+   }
+
+
+   public void turnLeft() { direction = direction.left(); }
+
+
+   public void turnRight() { direction = direction.right(); }
+
+
+   public boolean tryStepForward() {
+      Location nextLocation = new Location( [[c]] );
+      if (maze.isBlank(nextLocation)) {
+        location = nextLocation;
+        history.add(direction);
+        return true;
+      }
+      return false;
+   }
+	// c : location.x + direction.dx，location.y + direction.dy
+
+   public boolean isAtGoal() { return maze.isGoal(location); }
+
+
+   public List<Direction> getHistory() { return new Arraylist<>(history); }
+
+　
+〔３〕
+public enum Direction {
+   NORTH(Ø, -1), EAST(1, Ø), SOUTH(Ø, 1), WEST(-1, Ø);
+
+   public int dx, dy;
+
+
+   private Direction(int dx, int dy) {
+      this.dx = dx;
+      this.dy = dy;
+   }
+   // 클래스 메소드 values ​​는, 이 열거로 정의하고 있는 열거 정수를, 
+   // 정의 순서에 포함한 배열을 돌려준다 . 
+   // ordinal 메소드는이 열거 상수의 정의 순서 (선두는 Ø)를 반환합니다. 
+   public Direction left() { return values()[ dddd ]; }
+	// d : (ordinal() + 3) % 4
+
+   public Direction right() { return values()[(ordinal() + 1) % 4]; }
+}
+
+
+〔４〕
+public class Location {
+   public final int x, y;
+
+   public Location(int x, int y) {
+      this.x = x;
+      this.y = y;
+   }
+}
+
+
+〔５〕
+import java.util.List;
+
+public class PlayMaze {
+   public static void main(String... args) {
+      Maze maze = new Maze("*******" +
+                           "*..*..*" +
+                           "*S**.**" +
+                           "*.....*" +
+                           "*****.*" +
+                           "*G....*" +
+                           "*******", 7);
+      Piece piece = new Piece(maze);
+      while (!piece.isAtGoal()) {
+         piece.turnLeft();
+         while (!piece.tryStepForward()) {
+            piece.turnRight();
+         }
+      }
+      List<Direction> history = piece.getHistory();
+                                                      //여기가 α 위치
+      System.out.println(history);
+   }
+}
+
+문제2)
+프로그램 (5)의 α 위치에 다음 처리를 삽입하고, 실행 결과로서 밑의 코드에 표시하는 방각의 리스트를 얻었다. 코마는 시작 지점에서 목록의 각도 순으로 1단씩 진행하면 직전의 경으로 돌아가지 않는(정반대의 방향을 바꾸어 진행) 것 없이 골 지점에 이를 수 있다.  에 넣는 올바른 대답을 해답군 중에서 선택한다.
+　
+for (int i=eeeeeee; i < history.size(); i++) {
+   if (history.get(i - 1) == history.get(i).left().left()) {
+       history.remove(fffffff);
+       history.remove(fffffff);
+      i = < 2 ? Ø : 나는 - 2;
+   }
+}
+
+// e: 1
+// f : i - 1
+
+
+2018 가을
+#정보보안 세큐리티
+
+A사는 자동차 카탈로그 웹사이트에서 접수 받는 중.
+응용소프트웨어가 실행되는 웹서버, 데이터베이스가 실행되는 데이터베이스 서버로 구성.
+웹서버는 A사의 DMZ에 설치, DB서버는 A사의 사내 LAN에 접속.
+웹사이트 관리는 A사의 사내 LAN이 연결된 보수용 PC에서 B씨가 함
+카탈로그 청구자는 웹 브라우저에서 인터넷을 통해 HTTP over TLS를 통해 웹 사이트 악세스.
+
+다음의 동의를 얻어 카탈로그 청구자에게 정보를 수집하고 있음
+- 정보 제공이나 구입 지원을 실시한다.
+- 카탈로그 청구자가 다른 카탈로그를 청구하고 싶을 때 등에 등록한 이메일 주소와 패스워드를 사용하여 로그인할 수 있도록 한다.
+
+동의를 얻어 이름, 주소, 전화번호, 이메일, 비밀번호 등의 정보를 웹 사이트에 입력하여 DB에 등록하고 있음.
+암호는 해쉬화되고, 일반 정보는 텍스트로 저장.
+정보 소거는 청구자의 요청이 있을 때에만 운용하는 중.
+
+카탈로그 송부 후 청구자에 대한 구입 서비스를 DB에 저장된 전화번호, 이메일로 시행 중
+
+원인과 유출된 정보의 범위
+~~~~~ 1. 인터넷을 통해 SQL 주입 공격을 수행합니다.~~~~~~~~
+1.에 대한 설명으로 옳은 것
+공격자가 인터넷을 통해 웹 앱에 데이터베이스 조작 명령문을 입력하여 데이터베이스를 부적절하게 조작합니다.
+
+
+각 사고에 대한 대책
+1. SQL인젝션공격으로 부터의 방어
+- SQL문의 조합은 플레이스홀더를 이용하여 실행
+- [SQL문이 캐릭터 라인 연결에 의해 행하는 경우는, 접속하는 캐릭터 라인에 이스케이프 처리를 실시한다.]
+2. 정보유출리스크의 저감
+- [카탈로그 청구자의 동의를 얻은 후 보관 기간이 지나면 데이터베이스에서 삭제합니다.]
+3. 정보유출의 원인과 유출한 정보의 범위의 특정
+- [데이터베이스에 대한 액세스 로그를 가져옵니다.]
+
+
+문제3)
+웹 취향성에 대해 조금 더 면밀히 조사했더니 크로스 사이트 스크립팅 취약점 존재.
+크로스 사이트 스크립팅의 대책은?
+
+크로스 사이트 스크립팅(XSS)
+답)공격자가 함정을 파놓은 웹 페이지를 이용자가 열람하고, 해당 페이지내의 링크를 클릭했을 때, 부정 스크립트를 포함한 문자열이 취약한 Web 서버에 보내져, 리스폰에 츠메코마레타(끼워넣어진) 부정 스크립트의 실행에 의해 정보 유출이 발생.
+답)웹 애플리케이션에 제공된 입력 필드에 악성 JavaScript 코드가 포함된 데이터를 입력합니다.
+입력 데이터에 HTML, JavaScript 등이 포함되어 있으면 이스케이프 처리로 대책
+
+전체적으로 새로운 대책을 강구하는 것이 필요한 경우에는
+[부정한 통신을 차단하기 위해 WAF(Web Application Firewall)를 도입한다.]
+
+#데이터베이스
+검사제약
+검사표.결제액 - 검사제약
+검사 제약은 그 값과 범위를 제한하는 제약
+검사표.결제액은 판매표.판매악과 일치해야 하므로 검사제약에 해당됨
+
+일의성제약(유니크)
+판매표.회원ID는 같은 회원이 여러번 구매할 수도 있으니 해당 안 됨
+
+DATEDIFF(판매표.결제기한일, NOW()) = 3
+
+결제기한까지 3일이 남았고 지불이 이루어지지 않은 사람을 추출해야 함
+즉, 판매표에는 있지만 결제표에 없는 시점이 바로 이 시점
+따라서 
+[ 판매액.판매ID NOT IN(SELECT 판매ID FROM 결제표) ]
+
+포인트 제도 추가 도입
+[UPDATE CASE WHEN]
+
+// 단순 CASE 식
+CASE [제어 식]
+　WHEN [값 1] THEN [반환 값 1]
+　WHEN [값 2] THEN [반환 값 2]
+　ELSE [어떤 조건과 일치하지 않는 경우 반환 값]
+END
+
+// 검색CASE 수식
+CASE
+　WHEN [조건식 1] THEN [반환값 1]
+　WHEN [조건식 2] THEN [반환값 2]
+　ELSE [어떤 조건과도 일치하지 않을 때 반환하는 값]
+END
+
+#데이터 구조 및 알고리즘
+몰라레후
+
+#소프트웨어 개발
+히나가타에 치환표 값을 대입하여 문서를 출력하는 프로그램
+
+1. 히나가타는 0개 이상의 치환 지시와 0개 이상의 그대로 출력되는 치환 지시 이외의 부분이 이어지는 텍스트이다.
+	치환지시는 키이름을 <와 >로 묶습니다. 히나가타에서 <와 >는 치환지시 키 이름을 둘러싸는 용도에만 사용할 수 있습니다.
+
+2. 치환표는 키 명칭과 이것에 대응하는 문자열 나라비의 편성을 1개 이상 기술한 텍스트이며, 각각의 편성은, 다음의 형식으로 기술한다.
+
+　　"키 명칭": [문자열 나라비]
+
+　둘 이상 기술할 때는 쉼표로 구분한다.
+　문자열의 나열에는 치환에 사용되는 문자열 (이하 치환용 문자열이라고 함)을 큰 따옴표(이중인용부)로 묶은 문자열을 하나 이상 기술합니다. 치환용 문자열을 두 개 이상 기술 할 때는 쉼표로 구분하십시오. 예를 들면, 치환용 문자열이 2개인 경우는, 다음의 형식으로 기술한다.
+
+　　"키 명칭":["치환용 문자열", "치환용 문자열"]
+
+3. 히타가타에 치환표를 적용하면 히타가타의 <키 명칭>은 다음 규칙에 따라 대체됩니다.
+  1. 치환 테이블의 키 명칭에 대응하는 문자열의 나라비에 포함되는 치환용 문자열이 하나만일 때는, 그 치환용 문자열로 치환된다.
+  2. 치환 테이블의 키 명칭에 대응하는 캐릭터 라인의 나라비에 포함되는 치환용 캐릭터 라인이 2개 이상 있을 때는, 각 치환용 캐릭터 라인의 사이에 개행을 사이에 두고 나서, 순서대로 연결해 생기는 캐릭터 라인으로 대체된다.
+
+　치환표 중의 키 명칭 품목에 대응하는 문자열의 배열에는 치환용 문자열로서 메모리; 5,000엔 ( , ) HDD; 9000엔 이므로 메모리; 5,000엔 (⏎는 개행) HDD ; 9,000엔으로 치환된다.
+
+　이 프로그램에서는, 히타가타를, 0개 이상의 치환 지시와 0개 이상의 치환 지시 이외의 부분이 이어지는 문자 스트림으로서 취급한다. 각각의 치환 지시 및 각각의 치환 지시 이외의 부분을 플래그먼트라고 부른다.
+
+　인터페이스 Fragment는 플래그먼트(단편)를 나타냅니다.
+　클래스 Replacer는 치환지시를 나타냅니다.
+　클래스 PassThrough는 치환지시 이외의 부분을 나타냅니다.
+　클래스 TemplateParser 의 메소드 parse 는, 히타가타를 나타내는 문자 스트림로부터 단편의 리스트를 구축해, 클래스 Template 의 인스턴스를 생성해 돌려준다. 히타가타에 오류가 없어야 한다.
+　클래스 Template는 히타가타를 플래그먼트 목록으로 유지합니다. apply 메소드는 히타가타에 치환표을 적용하고 출력 문서를 문자열로 리턴합니다. 치환 테이블에는, 이 히타가타에 포함되는 키 명칭과 그것에 대응하는 캐릭터 라인의 배열이 포함되어 있는 것으로 한다.
+　클래스 ReplacementTableParser 메서드 parse는 치환표을 나타내는 문자 스트림에서 키 이름과 해당 문자열의 정렬 된 맵을 작성하고 반환합니다. 치환표에 오류가 없다고 가정합니다 (프로그램 생략).
+　클래스 TemplateTester는 테스트를위한 프로그램입니다. 텍스트 파일 template.txt가 그림 1의 히타가타와 동일한 내용이고 텍스트 파일 replacementTable.txt가 그림 1의 치환표과 동일한 내용이면 실행 결과는 그림 1의 출력 문서와 동일합니다.
+
+
+〔１〕
+
+import java.util.List;
+import java.util.Map;
+
+public interface Fragment {
+   String replace(Map<String, List<String>> table);
+}
+〔２〕
+import java.util.List;
+import java.util.Map;
+
+public class Replacer aaaaa Fragment {
+   final String key;
+
+   Replacer(CharSequence cs) { key = cs.toString(); }
+
+   public String replace(Map<String, List<String>> table) {
+      return String.join("\n", table.get(key));
+   }
+   // a : implements
+   
+〔３〕
+import java.util.List，
+import java.util.Map;
+
+public class PassThrough aaaaa Fragment {
+   final String str;
+
+   PassThrough(CharSequence cs) { str = cs.toString(); }
+
+   public String replace(Map<String, List<String>> table) {
+      return str;
+   }
+}
+〔４〕
+import java.io.I0Exception;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TemplateParser {
+   static public Template parse(Reader reader) throws I0Exception {
+      StringBuiLder buf = new StringBuilder();
+      List<Fragment> fragmentList = new ArrayList<>();
+      int c;
+      while ((c = reader.read()) >= 0) {
+         switch (c) {
+            case '<' :
+               fragmentList.add(new bbbb );
+               buf = new StringBuilder();
+               break;
+            case '>' :
+               fragmentList.add(new cccc );
+               buf = new StringBuilder();
+               break;
+                       αααααααααααααααααααααααααα여기
+            default :
+               buf.append((char) c);
+         }
+      }
+      fragmentList.add(new PassThrough(buf));
+      return dddd;
+   }
+}
+// b : PassThrough(buf)
+// c : Replacer(buf)
+// d : new Template(fragmentList)
+
+
+〔５〕
+import java.util.List;
+import java.util.Map;
+
+public class Template {
+   List<Fragment> fragmentList;
+
+   TempLate(List<Fragment> fragmentList) {
+      this.fragmentList = fragmentList;
+   }
+
+   public String apply(Map<String, List<String>> table) {
+      StringBuilder sb = new StringBuilder();
+      for (Fragment fragment : fragmentList) {
+         sb.append(fragment.replace( e ));
+      }
+      return sb.toString();
+   }
+}
+// e : table
+
+〔６〕
+import java.io.FileReader;
+import java.io.I0Exception;
+import java.io.Reader;
+import java.util.List;
+import java.util.Map;
+
+public class TemplateTester {
+   public static void main(String... args) throws IOException {
+      try {
+         Reader tReader = new FileReader("template.txt");
+         Reader rReader = new FileReader("replacementTable.txt")
+      ) {
+         Template template = TemplateParser.parse(tReader);
+         Map<String, List<String>> table =
+            ReplacementTableParser.parse(rReader);
+         System.out.print(template.apply(table));
+      }
+   }
+}
+
+
+문제2)
+　< 와 > 는, 치환 지시로서 키명칭을 둘러싸는 용도 이외에서는, 히나가타에서 사용할 수 없다. 그래서, 이러한 문자를 다른 용도로도 사용할 수 있도록, 다음의 2행을 프로그램 4의 클래스 TemplateParser 의 α 의 위치에 삽입했다. 이것에 의해, \ 에 계속되는 < 1 문자( \ 가 복수개 연속하는 경우는 홀수 개째에 계속되는 1 문자)는, 치환 지시 이외의 부분이나 키 명칭의 일부로서 취급된다. 여기서 다음 글자는 반드시 읽을 수 있다.
+
+case '\\' :
+	ffffff ;
+
+ffffff : 
+buf.append((char) reader. read()); break
